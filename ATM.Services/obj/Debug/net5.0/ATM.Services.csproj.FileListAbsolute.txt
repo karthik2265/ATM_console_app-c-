@@ -1,0 +1,15 @@
+C:\technovert\ATM\ATM.Services\bin\Debug\net5.0\ATM.Services.deps.json
+C:\technovert\ATM\ATM.Services\bin\Debug\net5.0\ATM.Services.dll
+C:\technovert\ATM\ATM.Services\bin\Debug\net5.0\ref\ATM.Services.dll
+C:\technovert\ATM\ATM.Services\bin\Debug\net5.0\ATM.Services.pdb
+C:\technovert\ATM\ATM.Services\bin\Debug\net5.0\ATM.Models.dll
+C:\technovert\ATM\ATM.Services\bin\Debug\net5.0\ATM.Models.pdb
+C:\technovert\ATM\ATM.Services\obj\Debug\net5.0\ATM.Services.csproj.AssemblyReference.cache
+C:\technovert\ATM\ATM.Services\obj\Debug\net5.0\ATM.Services.GeneratedMSBuildEditorConfig.editorconfig
+C:\technovert\ATM\ATM.Services\obj\Debug\net5.0\ATM.Services.AssemblyInfoInputs.cache
+C:\technovert\ATM\ATM.Services\obj\Debug\net5.0\ATM.Services.AssemblyInfo.cs
+C:\technovert\ATM\ATM.Services\obj\Debug\net5.0\ATM.Services.csproj.CoreCompileInputs.cache
+C:\technovert\ATM\ATM.Services\obj\Debug\net5.0\ATM.Services.csproj.CopyComplete
+C:\technovert\ATM\ATM.Services\obj\Debug\net5.0\ATM.Services.dll
+C:\technovert\ATM\ATM.Services\obj\Debug\net5.0\ref\ATM.Services.dll
+C:\technovert\ATM\ATM.Services\obj\Debug\net5.0\ATM.Services.pdb
