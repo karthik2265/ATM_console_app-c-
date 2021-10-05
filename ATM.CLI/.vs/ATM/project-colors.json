@@ -1,0 +1,26 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "afbc2e39-89e3-4973-811e-e7fecbed3fde": {
+      "ProjectGuid": "afbc2e39-89e3-4973-811e-e7fecbed3fde",
+      "DisplayName": "ATM.CLI",
+      "ColorIndex": 0
+    },
+    "576236a1-87e5-4552-9a3a-d8a58c0dd348": {
+      "ProjectGuid": "576236a1-87e5-4552-9a3a-d8a58c0dd348",
+      "DisplayName": "ATM.CLI.Models",
+      "ColorIndex": 1
+    },
+    "794ba99b-89a1-4f44-980f-f8e619f46c7a": {
+      "ProjectGuid": "794ba99b-89a1-4f44-980f-f8e619f46c7a",
+      "DisplayName": "ATM.Services",
+      "ColorIndex": 2
+    },
+    "13c316a0-6a73-4e8e-8d3a-df3b67791241": {
+      "ProjectGuid": "13c316a0-6a73-4e8e-8d3a-df3b67791241",
+      "DisplayName": "ATM.Models",
+      "ColorIndex": 3
+    }
+  },
+  "NextColorIndex": 4
+}

@@ -41,7 +41,6 @@
   },
   "projectFileDependencyGroups": {
     "net5.0": [
-      "ATM.Models >= 1.0.0",
       "ATM.Services >= 1.0.0"
     ]
   },
@@ -72,9 +71,6 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\technovert\\ATM\\ATM.Models\\ATM.Models.csproj": {
-              "projectPath": "C:\\technovert\\ATM\\ATM.Models\\ATM.Models.csproj"
-            },
             "C:\\technovert\\ATM\\ATM.Services\\ATM.Services.csproj": {
               "projectPath": "C:\\technovert\\ATM\\ATM.Services\\ATM.Services.csproj"
             }

@@ -10,7 +10,7 @@ namespace ATM.Models
     {
         public string userName;
         public string password;
-        public int balance;
+        public double balance;
 
         public BankAccount(string userName, string password)
         {

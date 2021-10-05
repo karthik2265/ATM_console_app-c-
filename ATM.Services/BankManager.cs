@@ -9,14 +9,13 @@ namespace ATM.Services
 {
     public class BankManager
     {
-        int managingBankId;
         Bank bank;
 
-        public BankManager(Bank b)
+        public BankManager(int id, string name)
         {
-            this.managingBankId = b.id;
-            this.bank = b;
+            this.bank = new Bank(id, name);
         }
+
 
         public List<string> GetTransactionHistory(string userName)
         {
@@ -25,7 +24,7 @@ namespace ATM.Services
 
         public bool Login(string userName, string password)
         {
-            return bank.users[userName] == password;
+            return bank.users[userName].password == password;
         }
 
         public void AddTransaction(string userName, string transaction)
@@ -34,9 +33,14 @@ namespace ATM.Services
 
         }
 
+        public void UpdateBalance(string userName, double amount)
+        {
+            bank.users[userName].balance += amount;
+        }
+
         public void AddAccount(string userName, string password)
         {
-            bank.users.Add(userName, password);
+            bank.users.Add(userName, new BankAccount(userName, password));
             bank.transactionHistory.Add(userName, new List<string>());
         }
 
@@ -45,10 +49,11 @@ namespace ATM.Services
             return bank.users.ContainsKey(userName);
         }
 
-        public bool CheckPassword(string userName, string password)
+        public double GetBalance(string userName)
         {
-            return bank.users[userName] == password;
+            return bank.users[userName].balance;
         }
+
 
     }
 }

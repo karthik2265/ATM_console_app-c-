@@ -9,7 +9,7 @@ namespace ATM.Models
     public class Bank
     {
         public Dictionary<string, List<string>> transactionHistory;
-        public Dictionary<string, string> users;
+        public Dictionary<string, BankAccount> users;
         public string name;
         public int id;
 
@@ -18,8 +18,7 @@ namespace ATM.Models
             this.id = id;
             this.name = name;
             transactionHistory = new Dictionary<string, List<string>>();
-            users = new Dictionary<string, string>();
-
+            users = new Dictionary<string, BankAccount>();
         }
     }
 }

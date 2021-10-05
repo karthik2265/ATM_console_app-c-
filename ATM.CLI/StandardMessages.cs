@@ -45,19 +45,19 @@ namespace ATM.Services
             Console.WriteLine();
         }
 
-        public static void SuccesfullyDeposited(string y)
+        public static void SuccesfullyDeposited(double y)
         {
             Console.WriteLine();
             Console.WriteLine(y + " deposited successfully");
         }
 
-        public static void SuccesfullyWithdrawn(string y)
+        public static void SuccesfullyWithdrawn(double y)
         {
             Console.WriteLine();
             Console.WriteLine(y + " withdrawn successfully");
         }
 
-        public static void SuccessfulTransfer(string amount, string accNo)
+        public static void SuccessfulTransfer(double amount, string accNo)
         {
             Console.WriteLine();
             Console.WriteLine($"{amount} has been succesfully transfered to {accNo}");
@@ -77,6 +77,19 @@ namespace ATM.Services
         {
             Console.WriteLine();
             Console.WriteLine("Enter a valid option");
+        }
+
+        public static void InSufficientBalance(double balance)
+        {
+            Console.WriteLine();
+            Console.WriteLine("Can not complete the action due to insufficient balance");
+            Console.WriteLine("Your current balance is " + balance);
+        }
+
+        public static void InvalidInput()
+        {
+            Console.WriteLine();
+            Console.WriteLine("Please enter a valid number");
         }
 
     }

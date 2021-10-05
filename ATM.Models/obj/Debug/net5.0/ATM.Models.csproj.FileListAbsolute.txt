@@ -9,3 +9,4 @@ C:\technovert\ATM\ATM.Models\obj\Debug\net5.0\ATM.Models.csproj.CoreCompileInput
 C:\technovert\ATM\ATM.Models\obj\Debug\net5.0\ATM.Models.dll
 C:\technovert\ATM\ATM.Models\obj\Debug\net5.0\ref\ATM.Models.dll
 C:\technovert\ATM\ATM.Models\obj\Debug\net5.0\ATM.Models.pdb
+C:\technovert\ATM\ATM.Models\obj\Debug\net5.0\ATM.Models.csproj.AssemblyReference.cache
