@@ -9,49 +9,68 @@ namespace ATM.Services
 {
     public class BankManager
     {
-        Bank bank;
+        Bank AlphaBank;
 
         public BankManager(int id, string name)
         {
-            this.bank = new Bank(id, name);
+            this.AlphaBank = new Bank(id, name);
         }
 
 
-        public List<string> GetTransactionHistory(string userName)
+        public List<string> GetTransactionHistory(string customerName)
         {
-            return bank.transactionHistory[userName];
+            return AlphaBank.Customers[customerName].TransactionHistory;
         }
 
-        public bool Login(string userName, string password)
+        public bool Login(string customerName, string password)
         {
-            return bank.users[userName].password == password;
+            return AlphaBank.Customers[customerName].Password == password;
         }
 
-        public void AddTransaction(string userName, string transaction)
+        public void AddTransaction(string customerName, string transaction)
         {
-            bank.transactionHistory[userName].Add(transaction);
+            AlphaBank.Customers[customerName].TransactionHistory.Add(transaction);
 
         }
 
-        public void UpdateBalance(string userName, double amount)
+        public bool DepositAmount(string customerName, double amount)
         {
-            bank.users[userName].balance += amount;
+            AlphaBank.Customers[customerName].Balance += amount;
+            return true;
         }
 
-        public void AddAccount(string userName, string password)
+        public bool WithdrawAmount(string customerName, double amount)
         {
-            bank.users.Add(userName, new BankAccount(userName, password));
-            bank.transactionHistory.Add(userName, new List<string>());
+            AlphaBank.Customers[customerName].Balance -= amount;
+            return true;
         }
 
-        public bool UserExists(string userName)
+        public bool TransferAmount(string senderName, double amount, string reciverName)
         {
-            return bank.users.ContainsKey(userName);
+            AlphaBank.Customers[senderName].Balance -= amount;
+            if (AlphaBank.Customers.ContainsKey(reciverName))
+            {
+                DepositAmount(reciverName, amount);
+                AddTransaction(senderName, "recieved " + amount + " from " + senderName);
+
+            }
+            return true;
         }
 
-        public double GetBalance(string userName)
+
+        public void AddAccount(string customerName, string password)
         {
-            return bank.users[userName].balance;
+            AlphaBank.Customers.Add(customerName, new Customer(customerName, password));
+        }
+
+        public bool CustomerExists(string customerName)
+        {
+            return AlphaBank.Customers.ContainsKey(customerName);
+        }
+
+        public double GetBalance(string customerName)
+        {
+            return AlphaBank.Customers[customerName].Balance;
         }
 
 

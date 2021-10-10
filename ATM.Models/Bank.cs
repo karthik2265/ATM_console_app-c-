@@ -8,17 +8,15 @@ namespace ATM.Models
 {
     public class Bank
     {
-        public Dictionary<string, List<string>> transactionHistory;
-        public Dictionary<string, BankAccount> users;
-        public string name;
-        public int id;
+        public Dictionary<string, Customer> Customers;
+        public string Name;
+        public int Id;
 
         public Bank(int id, string name)
         {
-            this.id = id;
-            this.name = name;
-            transactionHistory = new Dictionary<string, List<string>>();
-            users = new Dictionary<string, BankAccount>();
+            this.Id = id;
+            this.Name = name;
+            this.Customers = new Dictionary<string, Customer>();
         }
     }
 }

@@ -6,6 +6,21 @@ namespace ATM.CLI
 {
     internal class Program
     {
+        enum Options
+        {
+            Quit,
+            Deposit,
+            Withdraw,
+            Transfer,
+            History
+        }
+
+        enum Status
+        {
+            InvalidInput,
+            InsufficientBalance,
+            Success
+        }
         static void Main()
         {
             BankManager manager = new BankManager(1, "Alpha");
@@ -16,84 +31,83 @@ namespace ATM.CLI
             // take user input to create account or login
             bool createAccount = Convert.ToInt32(TakeUserInput.Input()) == 1;
             // branch according to createAccount
-            string userName;
+            string customerName;
             string password;
             if (createAccount)
             {
                 // create a new account and add it to bank using bank manager
 
-                userName = TakeUserInput.UserName();
+                customerName = TakeUserInput.UserName();
                 password = TakeUserInput.Password();
-                manager.AddAccount(userName, password);
+                manager.AddAccount(customerName, password);
                 StandardMessages.AccountCreationSuccesful();
             }
             // log in and ask user what he wants to do
             do
             {
-                userName = TakeUserInput.UserName();
-            } while (!manager.UserExists(userName));
+                customerName = TakeUserInput.UserName();
+            } while (!manager.CustomerExists(customerName));
 
             do
             {
                 password = TakeUserInput.Password();
-            } while (!manager.Login(userName, password));
+            } while (!manager.Login(customerName, password));
 
-            StandardMessages.UserLoggedIn(userName);
+            StandardMessages.UserLoggedIn(customerName);
             StandardMessages.ChooseAnOption();
 
-            int option = Convert.ToInt32(TakeUserInput.Input());
-            double amount;
-            string input;
-            int status;
-            while (option != 0)
+            Options option = (Options) Convert.ToInt32(TakeUserInput.Input());
+        
+            Status status;
+            while (option != Options.Quit)
             {
-                if (option == 1)
+                if (option == Options.Deposit)
                 {
-                    input = TakeUserInput.DepositAmount();
-                    status = (int) InputValidator.IsDepositable(input);
-                    if (status == 2)
+                    string depositInput = TakeUserInput.DepositAmount();
+                    status = (Status) InputValidator.IsDepositable(depositInput);
+                    if (status == Status.Success)
                     {
-                        amount = Convert.ToDouble(TakeUserInput.DepositAmount());
-                        StandardMessages.SuccesfullyDeposited(amount);
-                        manager.AddTransaction(userName, $"{amount} deposited");
-                        manager.UpdateBalance(userName, amount);
+                        double depositAmount = Convert.ToDouble(depositInput);
+                        StandardMessages.SuccesfullyDeposited(depositAmount);
+                        manager.AddTransaction(customerName, $"{depositAmount} deposited");
+                        manager.DepositAmount(customerName, depositAmount);
                     }
-                    else if (status == 1) StandardMessages.InSufficientBalance(manager.GetBalance(userName));
+                    else if (status == Status.InsufficientBalance) StandardMessages.InSufficientBalance(manager.GetBalance(customerName));
                     else StandardMessages.InvalidInput();
                 }
-                else if (option == 2)
+                else if (option == Options.Withdraw)
                 {
-                    input = TakeUserInput.WithdrawAmount();
-                    status = (int) InputValidator.IsDepositable(input);
-                    if (status == 2)
+                    string withdrawInput = TakeUserInput.WithdrawAmount();
+                    status = (Status) InputValidator.IsValidAmount(withdrawInput, manager.GetBalance(customerName));
+                    if (status == Status.Success)
                     {
-                        amount = Convert.ToDouble(TakeUserInput.WithdrawAmount());
-                        StandardMessages.SuccesfullyWithdrawn(amount);
-                        manager.AddTransaction(userName, $"{amount} withdrawn");
-                        manager.UpdateBalance(userName, -amount);
+                        double withdrawAmount = Convert.ToDouble(withdrawInput);
+                        StandardMessages.SuccesfullyWithdrawn(withdrawAmount);
+                        manager.AddTransaction(customerName, $"{withdrawAmount} withdrawn");
+                        manager.WithdrawAmount(customerName, withdrawAmount);
                     }
-                    else if (status == 1) StandardMessages.InSufficientBalance(manager.GetBalance(userName));
+                    else if (status == Status.InsufficientBalance) StandardMessages.InSufficientBalance(manager.GetBalance(customerName));
                     else StandardMessages.InvalidInput();
                 }
-                else if (option == 3)
+                else if (option == Options.Transfer)
                 {
 
-                    string accNo = TakeUserInput.AccountNo();
-                    input = TakeUserInput.AmountToTransfer();
-                    status = (int) InputValidator.IsDepositable(input);
-                    if (status == 2)
+                    string recieverName = TakeUserInput.RecieverName();
+                    string transferInput = TakeUserInput.AmountToTransfer();
+                    status = (Status) InputValidator.IsValidAmount(transferInput, manager.GetBalance(customerName));
+                    if (status == Status.Success)
                     {
-                        amount = Convert.ToDouble(TakeUserInput.AmountToTransfer());
-                        StandardMessages.SuccessfulTransfer(amount, accNo);
-                        manager.AddTransaction(userName, $"{amount} has been transferred to {accNo}");
-                        manager.UpdateBalance(userName, -amount);
+                        double transferAmount = Convert.ToDouble(transferInput);
+                        StandardMessages.SuccessfulTransfer(transferAmount, recieverName);
+                        manager.AddTransaction(customerName, $"{transferAmount} has been transferred to {recieverName}");
+                        manager.TransferAmount(customerName, transferAmount, recieverName);
                     }
-                    else if (status == 1) StandardMessages.InSufficientBalance(manager.GetBalance(userName));
+                    else if (status == Status.InsufficientBalance) StandardMessages.InSufficientBalance(manager.GetBalance(customerName));
                     else StandardMessages.InvalidInput();
                 }
-                else if (option == 4)
+                else if (option == Options.History)
                 {
-                    StandardMessages.TransactionHistory(manager.GetTransactionHistory(userName));
+                    StandardMessages.TransactionHistory(manager.GetTransactionHistory(customerName));
                 }
                 else
                 {
@@ -101,7 +115,7 @@ namespace ATM.CLI
                 }
 
                 StandardMessages.ChooseAnOption();
-                option = Convert.ToInt32(TakeUserInput.Input());
+                option = (Options) Convert.ToInt32(TakeUserInput.Input());
             }
         }
     }

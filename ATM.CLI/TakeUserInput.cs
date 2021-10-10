@@ -34,9 +34,9 @@ namespace ATM.CLI
             return GetInput("Enter amount to withdraw");
         }
 
-        public static string AccountNo()
+        public static string RecieverName()
         {
-            return GetInput("Enter the account number");
+            return GetInput("Enter the name of person you want to send to");
         }
 
         public static string AmountToTransfer()
@@ -49,7 +49,8 @@ namespace ATM.CLI
             Console.WriteLine();
             Console.WriteLine(message);
             Console.WriteLine();
-            return Console.ReadLine();
+            string result = Console.ReadLine();
+            return result;
         }
     }
 }
