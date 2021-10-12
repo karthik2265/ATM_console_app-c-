@@ -18,4 +18,3 @@ C:\technovert\ATM\ATM.CLI\obj\Debug\net5.0\ATM.CLI.dll
 C:\technovert\ATM\ATM.CLI\obj\Debug\net5.0\ref\ATM.CLI.dll
 C:\technovert\ATM\ATM.CLI\obj\Debug\net5.0\ATM.CLI.pdb
 C:\technovert\ATM\ATM.CLI\obj\Debug\net5.0\ATM.CLI.genruntimeconfig.cache
-C:\technovert\ATM\ATM.CLI\obj\Debug\net5.0\ATM.CLI.csproj.CopyComplete

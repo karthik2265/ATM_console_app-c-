@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ATM.Services
 {
-    public class StandardMessages
+    public class ConsoleOutput
     {
         public static void Welcome()
         {
