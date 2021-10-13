@@ -8,38 +8,32 @@ namespace ATM.Services
 {
     public static class InputValidator
     {
-        public enum Status
-        {
-            InvalidInput,
-            InsufficientBalance,
-            Success
-        }
 
-        public static Status IsDepositable(string amount) {
+        public static ValidationStatus IsDepositable(string amount) {
             
             try
             {
                 Convert.ToDouble(amount);
-                return Status.Success;
+                return ValidationStatus.Success;
             }
             catch
             {
-                return Status.InvalidInput;
+                return ValidationStatus.InvalidInput;
             }
             
         }
 
-        public static Status IsValidAmount(string amt, double balance)
+        public static ValidationStatus IsValidAmount(string amt, double balance)
         {
             try
             {
                 double amount = Convert.ToDouble(amt);
-                if (amount > balance) return Status.InsufficientBalance;
-                return Status.Success;
+                if (amount > balance) return ValidationStatus.InsufficientBalance;
+                return ValidationStatus.Success;
             }
             catch
             {
-                return Status.InvalidInput;
+                return ValidationStatus.InvalidInput;
             }
         }
     }

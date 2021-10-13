@@ -15,12 +15,6 @@ namespace ATM.CLI
             History
         }
 
-        enum Status
-        {
-            InvalidInput,
-            InsufficientBalance,
-            Success
-        }
         static void Main()
         {
             BankManager manager = new BankManager(1, "Alpha");
@@ -58,35 +52,35 @@ namespace ATM.CLI
 
             Options option = (Options) Convert.ToInt32(TakeUserInput.Input());
         
-            Status status;
+            ValidationStatus status;
             while (option != Options.Quit)
             {
                 if (option == Options.Deposit)
                 {
                     string depositInput = TakeUserInput.DepositAmount();
-                    status = (Status) InputValidator.IsDepositable(depositInput);
-                    if (status == Status.Success)
+                    status = (ValidationStatus) InputValidator.IsDepositable(depositInput);
+                    if (status == ValidationStatus.Success)
                     {
                         double depositAmount = Convert.ToDouble(depositInput);
                         ConsoleOutput.SuccesfullyDeposited(depositAmount);
                         manager.AddTransaction(customerName, $"{depositAmount} deposited");
                         manager.DepositAmount(customerName, depositAmount);
                     }
-                    else if (status == Status.InsufficientBalance) ConsoleOutput.InSufficientBalance(manager.GetBalance(customerName));
+                    else if (status == ValidationStatus.InsufficientBalance) ConsoleOutput.InSufficientBalance(manager.GetBalance(customerName));
                     else ConsoleOutput.InvalidInput();
                 }
                 else if (option == Options.Withdraw)
                 {
                     string withdrawInput = TakeUserInput.WithdrawAmount();
-                    status = (Status) InputValidator.IsValidAmount(withdrawInput, manager.GetBalance(customerName));
-                    if (status == Status.Success)
+                    status = (ValidationStatus) InputValidator.IsValidAmount(withdrawInput, manager.GetBalance(customerName));
+                    if (status == ValidationStatus.Success)
                     {
                         double withdrawAmount = Convert.ToDouble(withdrawInput);
                         ConsoleOutput.SuccesfullyWithdrawn(withdrawAmount);
                         manager.AddTransaction(customerName, $"{withdrawAmount} withdrawn");
                         manager.WithdrawAmount(customerName, withdrawAmount);
                     }
-                    else if (status == Status.InsufficientBalance) ConsoleOutput.InSufficientBalance(manager.GetBalance(customerName));
+                    else if (status == ValidationStatus.InsufficientBalance) ConsoleOutput.InSufficientBalance(manager.GetBalance(customerName));
                     else ConsoleOutput.InvalidInput();
                 }
                 else if (option == Options.Transfer)
@@ -94,15 +88,15 @@ namespace ATM.CLI
 
                     string recieverName = TakeUserInput.RecieverName();
                     string transferInput = TakeUserInput.AmountToTransfer();
-                    status = (Status) InputValidator.IsValidAmount(transferInput, manager.GetBalance(customerName));
-                    if (status == Status.Success)
+                    status = (ValidationStatus) InputValidator.IsValidAmount(transferInput, manager.GetBalance(customerName));
+                    if (status == ValidationStatus.Success)
                     {
                         double transferAmount = Convert.ToDouble(transferInput);
                         ConsoleOutput.SuccessfulTransfer(transferAmount, recieverName);
                         manager.AddTransaction(customerName, $"{transferAmount} has been transferred to {recieverName}");
                         manager.TransferAmount(customerName, transferAmount, recieverName);
                     }
-                    else if (status == Status.InsufficientBalance) ConsoleOutput.InSufficientBalance(manager.GetBalance(customerName));
+                    else if (status == ValidationStatus.InsufficientBalance) ConsoleOutput.InSufficientBalance(manager.GetBalance(customerName));
                     else ConsoleOutput.InvalidInput();
                 }
                 else if (option == Options.History)
