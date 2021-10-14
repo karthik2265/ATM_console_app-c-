@@ -10,13 +10,21 @@ namespace ATM.Models
     {
         public Dictionary<string, Customer> Customers;
         public string Name;
-        public int Id;
+        public string Id;
+
+        // to set Id 
+        private readonly DateTime currentDate;
 
         public Bank(int id, string name)
         {
-            this.Id = id;
             this.Name = name;
             this.Customers = new Dictionary<string, Customer>();
+            // set accountId
+            currentDate = DateTime.Now;
+            string date = currentDate.ToShortDateString();
+            Id = "";
+            for (int i = 0; i < 3; i++) Id += this.Name;
+            Id += date;
         }
     }
 }

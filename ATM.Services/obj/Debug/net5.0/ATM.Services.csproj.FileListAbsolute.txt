@@ -12,3 +12,4 @@ C:\technovert\ATM\ATM.Services\obj\Debug\net5.0\ATM.Services.csproj.CoreCompileI
 C:\technovert\ATM\ATM.Services\obj\Debug\net5.0\ATM.Services.dll
 C:\technovert\ATM\ATM.Services\obj\Debug\net5.0\ref\ATM.Services.dll
 C:\technovert\ATM\ATM.Services\obj\Debug\net5.0\ATM.Services.pdb
+C:\technovert\ATM\ATM.Services\obj\Debug\net5.0\ATM.Services.csproj.CopyComplete
