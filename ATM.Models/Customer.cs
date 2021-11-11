@@ -1,0 +1,41 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using ATM.Models.enums;
+
+namespace ATM.Models
+{
+    public class Customer
+    {
+
+        // to set accountId 
+        private DateTime currentDate;
+
+
+        public string Id;
+        public string Name;
+        public string Password;
+        public double Balance;
+        public List<Transaction> Transactions;
+        public string BankId;
+        public AccountStatus Status;  
+
+        public Customer(string userName, string password, AccountStatus status = AccountStatus.Active)
+        {
+            this.Name = userName;
+            this.Password = password;
+            this.Balance = 0;
+            this.Transactions = new List<Transaction>();
+            currentDate = DateTime.Now;
+            string date = currentDate.ToShortDateString();
+            // set accountId
+            Id = "";
+            for (int i=0; i<3; i++)  Id += this.Name;
+            Id += date;
+            // status
+            this.Status = status;
+        }
+    }
+}
