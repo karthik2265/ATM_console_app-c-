@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ATM.Models
 {
@@ -18,33 +15,56 @@ namespace ATM.Models
         public double RTGSChargeToOtherBanks;
         public double IMPSChargeToOtherBanks;
         // to set Id 
-        private readonly DateTime currentDate;
+        private DateTime currentDate;
         // accepted curreny and exchange rate
-        public Currency AcceptedCurrency;
+        public string AcceptedCurrency;
         public double ExchangeRate;
         // staff
         public Dictionary<string, Staff> Staff;
 
-        public Bank(string id, string name, Currency acceptedCurrency)
+       
+
+        public Bank(string id, string name, string acceptedCurrency)
         {
             this.Name = name;
             this.Customers = new Dictionary<string, Customer>();
             this.Transactions = new Dictionary<string, Transaction>();
-            // set accountId
-            currentDate = DateTime.Now;
-            string date = currentDate.ToShortDateString();
-            Id = "";
-            for (int i = 0; i < 3; i++) Id += this.Name;
-            Id += date;
+            // set Id
+            this.Id = setId(name);
             //  RTGS and IMPS rates
             this.RTGSChargeToSameBank = 0;
             this.IMPSChargeToSameBank = 5;
             this.RTGSChargeToOtherBanks = 2;
             this.RTGSChargeToOtherBanks = 6;
             // currency and exchange rate
-            this.AcceptedCurrency = Currency.INR;
-            this.ExchangeRate = 0;
+            this.AcceptedCurrency = "INR";
+            this.ExchangeRate = 1;
 
-         }
+        }
+
+        public Bank(string name, string id, double RTGSChargeToSameBank, double IMPSChargeToSameBank, double RTGSChargeToOtherBanks, double IMPSChargeToOtherBanks, string acceptedCurrency, double exchangeRate): this(id, name, acceptedCurrency)
+        {
+            //  RTGS and IMPS rates
+            this.RTGSChargeToSameBank = RTGSChargeToSameBank;
+            this.IMPSChargeToSameBank = IMPSChargeToSameBank;
+            this.RTGSChargeToOtherBanks = RTGSChargeToOtherBanks;
+            this.RTGSChargeToOtherBanks = IMPSChargeToOtherBanks;
+            // currency and exchange rate
+            this.AcceptedCurrency = acceptedCurrency;
+            this.ExchangeRate = exchangeRate;
+        }
+
+        private string setId(string name)
+        {
+            DateTime currentDate = DateTime.Now;
+            string date = currentDate.ToShortDateString();
+            string Id = "";
+            for (int i = 0; i < 3; i++) Id += name;
+            Id += date;
+            return Id;
+        }
+
+
+
     }
 }

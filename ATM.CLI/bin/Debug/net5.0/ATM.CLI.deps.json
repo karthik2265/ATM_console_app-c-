@@ -97,7 +97,8 @@
       },
       "ATM.Services/1.0.0": {
         "dependencies": {
-          "ATM.Models": "1.0.0"
+          "ATM.Models": "1.0.0",
+          "System.Data.SqlClient": "4.8.3"
         },
         "runtime": {
           "ATM.Services.dll": {}

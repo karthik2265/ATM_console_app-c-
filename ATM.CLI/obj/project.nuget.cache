@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "pOFCjikXZ9I/a+FkzhvQzRw/1INPl83RJy9478ZcFhcm1ARLLDdG9eLXrNimyTrpSNcA/rNOHclZ4hfZ2emLmw==",
+  "dgSpecHash": "CxCtz4dGheOyZJclbCFoFcr1fHR4aY8hlwX+4ifZ6fMgFVKlYO0rGOXSO87Ru4ZfYaWdp7HzKTmGL6NCuoNzkQ==",
   "success": true,
-  "projectFilePath": "C:\\Technovert\\ATM_csharp-master\\ATM.CLI\\ATM.CLI.csproj",
+  "projectFilePath": "C:\\Technovert\\atm_csharp\\ATM.CLI\\ATM.CLI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\karth\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\karth\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",

@@ -28,3 +28,17 @@ C:\Technovert\ATM_csharp-master\ATM.Services\obj\Debug\net5.0\ATM.Services.cspro
 C:\Technovert\ATM_csharp-master\ATM.Services\obj\Debug\net5.0\ATM.Services.dll
 C:\Technovert\ATM_csharp-master\ATM.Services\obj\Debug\net5.0\ref\ATM.Services.dll
 C:\Technovert\ATM_csharp-master\ATM.Services\obj\Debug\net5.0\ATM.Services.pdb
+C:\Technovert\atm_csharp\ATM.Services\bin\Debug\net5.0\ATM.Services.deps.json
+C:\Technovert\atm_csharp\ATM.Services\bin\Debug\net5.0\ATM.Services.dll
+C:\Technovert\atm_csharp\ATM.Services\bin\Debug\net5.0\ref\ATM.Services.dll
+C:\Technovert\atm_csharp\ATM.Services\bin\Debug\net5.0\ATM.Services.pdb
+C:\Technovert\atm_csharp\ATM.Services\bin\Debug\net5.0\ATM.Models.dll
+C:\Technovert\atm_csharp\ATM.Services\bin\Debug\net5.0\ATM.Models.pdb
+C:\Technovert\atm_csharp\ATM.Services\obj\Debug\net5.0\ATM.Services.csproj.AssemblyReference.cache
+C:\Technovert\atm_csharp\ATM.Services\obj\Debug\net5.0\ATM.Services.GeneratedMSBuildEditorConfig.editorconfig
+C:\Technovert\atm_csharp\ATM.Services\obj\Debug\net5.0\ATM.Services.AssemblyInfoInputs.cache
+C:\Technovert\atm_csharp\ATM.Services\obj\Debug\net5.0\ATM.Services.AssemblyInfo.cs
+C:\Technovert\atm_csharp\ATM.Services\obj\Debug\net5.0\ATM.Services.csproj.CoreCompileInputs.cache
+C:\Technovert\atm_csharp\ATM.Services\obj\Debug\net5.0\ATM.Services.dll
+C:\Technovert\atm_csharp\ATM.Services\obj\Debug\net5.0\ref\ATM.Services.dll
+C:\Technovert\atm_csharp\ATM.Services\obj\Debug\net5.0\ATM.Services.pdb

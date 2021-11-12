@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Technovert\\ATM_csharp-master\\ATM.CLI\\ATM.CLI.csproj": {}
+    "C:\\Technovert\\atm_csharp\\ATM.CLI\\ATM.CLI.csproj": {}
   },
   "projects": {
-    "C:\\Technovert\\ATM_csharp-master\\ATM.CLI\\ATM.CLI.csproj": {
+    "C:\\Technovert\\atm_csharp\\ATM.CLI\\ATM.CLI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Technovert\\ATM_csharp-master\\ATM.CLI\\ATM.CLI.csproj",
+        "projectUniqueName": "C:\\Technovert\\atm_csharp\\ATM.CLI\\ATM.CLI.csproj",
         "projectName": "ATM.CLI",
-        "projectPath": "C:\\Technovert\\ATM_csharp-master\\ATM.CLI\\ATM.CLI.csproj",
+        "projectPath": "C:\\Technovert\\atm_csharp\\ATM.CLI\\ATM.CLI.csproj",
         "packagesPath": "C:\\Users\\karth\\.nuget\\packages\\",
-        "outputPath": "C:\\Technovert\\ATM_csharp-master\\ATM.CLI\\obj\\",
+        "outputPath": "C:\\Technovert\\atm_csharp\\ATM.CLI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\karth\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -28,8 +28,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Technovert\\ATM_csharp-master\\ATM.Services\\ATM.Services.csproj": {
-                "projectPath": "C:\\Technovert\\ATM_csharp-master\\ATM.Services\\ATM.Services.csproj"
+              "C:\\Technovert\\atm_csharp\\ATM.Services\\ATM.Services.csproj": {
+                "projectPath": "C:\\Technovert\\atm_csharp\\ATM.Services\\ATM.Services.csproj"
               }
             }
           }
@@ -68,14 +68,14 @@
         }
       }
     },
-    "C:\\Technovert\\ATM_csharp-master\\ATM.Models\\ATM.Models.csproj": {
+    "C:\\Technovert\\atm_csharp\\ATM.Models\\ATM.Models.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Technovert\\ATM_csharp-master\\ATM.Models\\ATM.Models.csproj",
+        "projectUniqueName": "C:\\Technovert\\atm_csharp\\ATM.Models\\ATM.Models.csproj",
         "projectName": "ATM.Models",
-        "projectPath": "C:\\Technovert\\ATM_csharp-master\\ATM.Models\\ATM.Models.csproj",
+        "projectPath": "C:\\Technovert\\atm_csharp\\ATM.Models\\ATM.Models.csproj",
         "packagesPath": "C:\\Users\\karth\\.nuget\\packages\\",
-        "outputPath": "C:\\Technovert\\ATM_csharp-master\\ATM.Models\\obj\\",
+        "outputPath": "C:\\Technovert\\atm_csharp\\ATM.Models\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\karth\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -122,14 +122,14 @@
         }
       }
     },
-    "C:\\Technovert\\ATM_csharp-master\\ATM.Services\\ATM.Services.csproj": {
+    "C:\\Technovert\\atm_csharp\\ATM.Services\\ATM.Services.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Technovert\\ATM_csharp-master\\ATM.Services\\ATM.Services.csproj",
+        "projectUniqueName": "C:\\Technovert\\atm_csharp\\ATM.Services\\ATM.Services.csproj",
         "projectName": "ATM.Services",
-        "projectPath": "C:\\Technovert\\ATM_csharp-master\\ATM.Services\\ATM.Services.csproj",
+        "projectPath": "C:\\Technovert\\atm_csharp\\ATM.Services\\ATM.Services.csproj",
         "packagesPath": "C:\\Users\\karth\\.nuget\\packages\\",
-        "outputPath": "C:\\Technovert\\ATM_csharp-master\\ATM.Services\\obj\\",
+        "outputPath": "C:\\Technovert\\atm_csharp\\ATM.Services\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\karth\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -146,8 +146,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Technovert\\ATM_csharp-master\\ATM.Models\\ATM.Models.csproj": {
-                "projectPath": "C:\\Technovert\\ATM_csharp-master\\ATM.Models\\ATM.Models.csproj"
+              "C:\\Technovert\\atm_csharp\\ATM.Models\\ATM.Models.csproj": {
+                "projectPath": "C:\\Technovert\\atm_csharp\\ATM.Models\\ATM.Models.csproj"
               }
             }
           }
@@ -161,6 +161,12 @@
       "frameworks": {
         "net5.0": {
           "targetAlias": "net5.0",
+          "dependencies": {
+            "System.Data.SqlClient": {
+              "target": "Package",
+              "version": "[4.8.3, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",

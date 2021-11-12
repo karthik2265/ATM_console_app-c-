@@ -13,11 +13,14 @@ namespace ATM.CLI
         {
             // connect to database
             SqlConnection connection = new SqlConnection(@"Server=localhost\SQLEXPRESS;Database=bankingAppDB;Trusted_Connection=True;");
+            
             try
             {
                 Console.WriteLine("Connecting to SQL Server ... ");
                 Console.WriteLine();
                 connection.Open();
+                SQLService sqlService = new(connection);
+                sqlService.GetBanks();
                 Console.WriteLine("connected to databse successfully");
                 Console.WriteLine();
                 //       1) setup a new bank
@@ -37,7 +40,7 @@ namespace ATM.CLI
 
                 if (option == Mainmenu.CustomerLogin)
                 {
-                    CustomerLogin();
+                    CustomerLogin(connection);
                 }
 
                 if (option == Mainmenu.StaffLogin)
@@ -127,8 +130,9 @@ namespace ATM.CLI
             ConsoleOutput.AccountCreationSuccesful();
         }
 
-        public static void CustomerLogin()
+        public static void CustomerLogin(SqlConnection connection)
         {
+            
             BankService bankService = new BankService("1", "Alpha");
             Customer bankSelfAccount = new Customer("Alpha", "password");
 
