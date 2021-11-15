@@ -22,7 +22,7 @@ namespace ATM.Models
         public string BankId;
         public AccountStatus Status;  
 
-        public Customer(string userName, string password, AccountStatus status = AccountStatus.Active)
+        public Customer(string userName, string password, string bankId, AccountStatus status = AccountStatus.Active)
         {
             this.Name = userName;
             this.Password = password;
@@ -36,6 +36,7 @@ namespace ATM.Models
             Id += date;
             // status
             this.Status = status;
+            this.BankId = bankId;
         }
     }
 }

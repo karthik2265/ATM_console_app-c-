@@ -3,6 +3,7 @@ using ATM.Models.enums;
 using ATM.Services;
 using System;
 using System.Data.SqlClient;
+using System.Linq;
 
 namespace ATM.CLI
 {
@@ -12,52 +13,54 @@ namespace ATM.CLI
         static void Main()
         {
             // connect to database
-            SqlConnection connection = new SqlConnection(@"Server=localhost\SQLEXPRESS;Database=bankingAppDB;Trusted_Connection=True;");
-            
-            try
+            using (SqlConnection connection = new SqlConnection(@"Server=localhost\SQLEXPRESS;Database=bankingAppDB;Trusted_Connection=True;"))
             {
-                Console.WriteLine("Connecting to SQL Server ... ");
-                Console.WriteLine();
-                connection.Open();
-                SQLService sqlService = new(connection);
-                sqlService.GetBanks();
-                Console.WriteLine("connected to databse successfully");
-                Console.WriteLine();
-                //       1) setup a new bank
-                //       2) staff login
-                //       3) customer login
-
-                ConsoleOutput.Welcome();
-                ConsoleOutput.Mainmenu();
-
-
-                Mainmenu option = (Mainmenu)(Convert.ToInt32(TakeUserInput.Input()));
-
-                if (option == Mainmenu.SetupBank)
+                try
                 {
-                    SetupBank(connection);
+                    Console.WriteLine("Connecting to SQL Server ... ");
+                    Console.WriteLine();
+                    connection.Open();
+                    SQLService sqlService = new(connection);
+                    sqlService.GetBanks();
+                    Console.WriteLine("connected to databse successfully");
+                    Console.WriteLine();
+                    //       1) setup a new bank
+                    //       2) staff login
+                    //       3) customer login
+
+                    ConsoleOutput.Welcome();
+                    ConsoleOutput.Mainmenu();
+
+
+                    Mainmenu option = (Mainmenu)(Convert.ToInt32(TakeUserInput.Input()));
+
+                    if (option == Mainmenu.SetupBank)
+                    {
+                        SetupBank(connection);
+                    }
+
+                    if (option == Mainmenu.CustomerLogin)
+                    {
+                        CustomerLogin(sqlService);
+                    }
+
+                    if (option == Mainmenu.StaffLogin)
+                    {
+                        StaffLogin(sqlService);
+                    }
+
+                }
+                catch (SqlException e)
+                {
+                    Console.WriteLine(e.ToString());
                 }
 
-                if (option == Mainmenu.CustomerLogin)
+                finally
                 {
-                    CustomerLogin(connection);
+                    connection.Close();
                 }
-
-                if (option == Mainmenu.StaffLogin)
-                {
-                    StaffLogin();
-                }
-
-            }
-            catch (SqlException e)
-            {
-                Console.WriteLine(e.ToString());
             }
 
-            finally
-            {
-                connection.Close();
-            }
 
         }
 
@@ -122,19 +125,22 @@ namespace ATM.CLI
             }
         }
 
-        public static void CreateAccountForCustomer(BankService manager)
+        public static void CreateAccountForCustomer(BankService manager, SQLService sqlService)
         {
             string customerName = TakeUserInput.UserName();
             string password = TakeUserInput.Password();
-            manager.AddAccount(customerName, password);
+            manager.AddAccount(customerName, password, sqlService);
             ConsoleOutput.AccountCreationSuccesful();
         }
 
-        public static void CustomerLogin(SqlConnection connection)
+        public static void CustomerLogin(SQLService sqlService)
         {
-            
-            BankService bankService = new BankService("1", "Alpha");
-            Customer bankSelfAccount = new Customer("Alpha", "password");
+            var banks = sqlService.GetBanks();
+            var bankNames = banks.Select(x => x.Name).ToList();
+            string bankName = TakeUserInput.ChooseAnOption(bankNames, "Bank");
+            Bank bank = banks.Find(x => x.Name == bankName);
+            BankService bankService = new BankService(bank);
+            Customer bankSelfAccount = new(bankName, "password", bank.Id);
 
             ConsoleOutput.LoginOrCreateAnAccount();
 
@@ -144,8 +150,8 @@ namespace ATM.CLI
 
             if (createAccount)
             {
-                // create a new account and add it to bank using bank manager
-                CreateAccountForCustomer(bankService);
+                // create a new account and add it to database
+                CreateAccountForCustomer(bankService, sqlService);
             }
 
             // log in and ask user what he wants to do
@@ -257,7 +263,7 @@ namespace ATM.CLI
             return true;
         }
 
-        public static void StaffLogin()
+        public static void StaffLogin(SQLService sqlService)
         {
             StaffService staffService = new StaffService("1", "alpha");
 
@@ -278,7 +284,7 @@ namespace ATM.CLI
             {
                 if (option == StaffMenu.CreateAccount)
                 {
-                    CreateAccountForCustomer(staffService);
+                    CreateAccountForCustomer(staffService, sqlService);
                 }
                 else if (option == StaffMenu.UpdateAccountStatus)
                 {

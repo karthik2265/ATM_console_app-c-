@@ -25,7 +25,7 @@ namespace ATM.Services.Interfaces
 
         public bool TransferAmount(Customer sender, Customer reciever, double amount);
 
-        public void AddAccount(string customerName, string password);
+        public void AddAccount(string customerName, string password, SQLService sqlService);
 
         public bool CustomerExists(string customerName);
 

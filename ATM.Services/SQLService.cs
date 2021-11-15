@@ -17,6 +17,22 @@ namespace ATM.Services
             this.connection = cnn;
         }
 
+        public bool AddCustomer(Customer customer)
+        {
+            string query = $"INSERT INTO Customers VALUES({customer.Id}, {customer.Name}, {customer.Password}, {customer.Balance}, {customer.Status}, {customer.BankId})";
+            SqlCommand command = new(query, connection);
+            try
+            {
+                command.ExecuteNonQuery();
+                return true;
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e);
+                return false;
+            }
+        }
+
         public List<Bank> GetBanks()
         {
             var res = new List<Bank>();
@@ -26,7 +42,9 @@ namespace ATM.Services
             while (reader.Read())
             {
                 var bankData = (IDataReader) reader;
-                Bank b = new Bank(Convert.ToString(bankData[0]), Convert.ToString(bankData[1]), Convert.ToDouble(bankData[2]), Convert.ToDouble(bankData[3]), Convert.ToDouble(bankData[4]), Convert.ToDouble(bankData[5]), Convert.ToString(bankData[6]), Convert.ToDouble(bankData[7]));
+                var currencyString = Convert.ToString(bankData[6]);
+                Currency currency = (Currency)Enum.Parse(typeof(Currency), currencyString);
+                Bank b = new Bank(Convert.ToString(bankData[0]), Convert.ToString(bankData[1]), Convert.ToDouble(bankData[2]), Convert.ToDouble(bankData[3]), Convert.ToDouble(bankData[4]), Convert.ToDouble(bankData[5]), currency, Convert.ToDouble(bankData[7]));
                 res.Add(b);
             }
 

@@ -17,14 +17,14 @@ namespace ATM.Models
         // to set Id 
         private DateTime currentDate;
         // accepted curreny and exchange rate
-        public string AcceptedCurrency;
+        public Currency AcceptedCurrency;
         public double ExchangeRate;
         // staff
         public Dictionary<string, Staff> Staff;
 
        
 
-        public Bank(string id, string name, string acceptedCurrency)
+        public Bank(string id, string name, Currency acceptedCurrency)
         {
             this.Name = name;
             this.Customers = new Dictionary<string, Customer>();
@@ -37,12 +37,12 @@ namespace ATM.Models
             this.RTGSChargeToOtherBanks = 2;
             this.RTGSChargeToOtherBanks = 6;
             // currency and exchange rate
-            this.AcceptedCurrency = "INR";
+            this.AcceptedCurrency = acceptedCurrency;
             this.ExchangeRate = 1;
 
         }
 
-        public Bank(string name, string id, double RTGSChargeToSameBank, double IMPSChargeToSameBank, double RTGSChargeToOtherBanks, double IMPSChargeToOtherBanks, string acceptedCurrency, double exchangeRate): this(id, name, acceptedCurrency)
+        public Bank(string name, string id, double RTGSChargeToSameBank, double IMPSChargeToSameBank, double RTGSChargeToOtherBanks, double IMPSChargeToOtherBanks, Currency acceptedCurrency, double exchangeRate): this(id, name, acceptedCurrency)
         {
             //  RTGS and IMPS rates
             this.RTGSChargeToSameBank = RTGSChargeToSameBank;
@@ -50,13 +50,12 @@ namespace ATM.Models
             this.RTGSChargeToOtherBanks = RTGSChargeToOtherBanks;
             this.RTGSChargeToOtherBanks = IMPSChargeToOtherBanks;
             // currency and exchange rate
-            this.AcceptedCurrency = acceptedCurrency;
             this.ExchangeRate = exchangeRate;
         }
 
         private string setId(string name)
         {
-            DateTime currentDate = DateTime.Now;
+            currentDate = DateTime.Now;
             string date = currentDate.ToShortDateString();
             string Id = "";
             for (int i = 0; i < 3; i++) Id += name;

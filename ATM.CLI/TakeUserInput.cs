@@ -84,8 +84,17 @@ namespace ATM.CLI
             return GetInput("please enter the exchange rate");
         }
 
-        
-
+        public static string ChooseAnOption(List<string> lst, string metric)
+        {
+            Console.WriteLine("Please choose a " + metric);
+            Console.WriteLine();
+            for (int i = 0; i < lst.Count; i++)
+            {
+                Console.WriteLine(i + lst[i]);
+            }
+            int option = Convert.ToInt32(Console.ReadLine());
+            return lst[option];
+        }
 
         private static string GetInput(string message)
         {

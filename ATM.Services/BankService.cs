@@ -11,6 +11,11 @@ namespace ATM.Services
     {
         public Bank AlphaBank;
 
+        public BankService(Bank b)
+        {
+            this.AlphaBank = b;
+        }
+
         public BankService(string id, string name)
         {
             this.AlphaBank = new Bank(id, name, Currency.INR);
@@ -65,9 +70,11 @@ namespace ATM.Services
         }
 
 
-        public void AddAccount(string customerName, string password)
+        public void AddAccount(string customerName, string password, SQLService sqlService)
         {
-            AlphaBank.Customers.Add(customerName, new Customer(customerName, password));
+            Customer newCustomer = new(customerName, password, AlphaBank.Id);
+            sqlService.AddCustomer(newCustomer);
+
         }
 
         public bool CustomerExists(string customerName)
