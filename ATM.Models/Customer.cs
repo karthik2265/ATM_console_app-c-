@@ -32,7 +32,7 @@ namespace ATM.Models
             string date = currentDate.ToShortDateString();
             // set accountId
             Id = "";
-            for (int i=0; i<3; i++)  Id += this.Name;
+            for (int i=0; i<3; i++)  Id += this.Name[i];
             Id += date;
             // status
             this.Status = status;
