@@ -90,7 +90,7 @@ namespace ATM.CLI
             Console.WriteLine();
             for (int i = 0; i < lst.Count; i++)
             {
-                Console.WriteLine(i + lst[i]);
+                Console.WriteLine(i + " " + lst[i]);
             }
             int option = Convert.ToInt32(Console.ReadLine());
             return lst[option];

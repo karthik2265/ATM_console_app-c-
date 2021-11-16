@@ -34,6 +34,24 @@ namespace ATM.Services
             }
         }
 
+        public Customer LogIn(string name, string password)
+        {
+            string query = "SELECT * FROM Customers";
+            SqlCommand command = new(query, connection);
+            SqlDataReader reader = command.ExecuteReader();
+            while( reader.Read())
+            {
+                var customerData = (IDataReader)reader;
+                string customerName = Convert.ToString(customerData[1]);
+                string customerPassword = Convert.ToString(customerData[2]);
+                if (customerName == name && customerPassword == password)
+                {
+
+                }
+            }
+            return null;
+        } 
+
         public List<Bank> GetBanks()
         {
             var res = new List<Bank>();

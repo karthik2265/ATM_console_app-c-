@@ -155,52 +155,54 @@ namespace ATM.CLI
             }
 
             // log in and ask user what he wants to do
-            string customerName;
-            string password;
-            do
+            string customerName = TakeUserInput.UserName();
+            string password = TakeUserInput.Password();
+
+            Customer currentlyLoggedInCustomer = bankService.Login(customerName, password, sqlService);
+
+            if (currentlyLoggedInCustomer == null)
             {
-                customerName = TakeUserInput.UserName();
-            } while (!bankService.CustomerExists(customerName));
-
-            do
+                ConsoleOutput.InvalidInput();
+            }
+            else
             {
-                password = TakeUserInput.Password();
-            } while (!bankService.Login(customerName, password));
-
-            ConsoleOutput.UserLoggedIn(customerName);
-            Customer currentlyLoggedInCustomer = bankService.GetCustomer(customerName);
-
-            ConsoleOutput.CustomerMenu();
-
-            CustomerMenu option = (CustomerMenu)Convert.ToInt32(TakeUserInput.Input());
-
-            while (option != CustomerMenu.Quit)
-            {
-                if (option == CustomerMenu.Deposit)
-                {
-                    Deposit(bankService, currentlyLoggedInCustomer, bankSelfAccount);
-
-                }
-                else if (option == CustomerMenu.Withdraw)
-                {
-                    Withdraw(bankService, currentlyLoggedInCustomer, bankSelfAccount);
-                }
-                else if (option == CustomerMenu.Transfer)
-                {
-                    Transfer(bankService, currentlyLoggedInCustomer);
-                }
-                else if (option == CustomerMenu.History)
-                {
-                    ConsoleOutput.TransactionHistory(bankService.GetTransactionHistory(currentlyLoggedInCustomer));
-                }
-                else
-                {
-                    ConsoleOutput.EnterValidOption();
-                }
+                ConsoleOutput.UserLoggedIn(customerName);
 
                 ConsoleOutput.CustomerMenu();
-                option = (CustomerMenu)Convert.ToInt32(TakeUserInput.Input());
+
+                CustomerMenu option = (CustomerMenu)Convert.ToInt32(TakeUserInput.Input());
+
+                while (option != CustomerMenu.Quit)
+                {
+                    if (option == CustomerMenu.Deposit)
+                    {
+                        Deposit(bankService, currentlyLoggedInCustomer, bankSelfAccount);
+
+                    }
+                    else if (option == CustomerMenu.Withdraw)
+                    {
+                        Withdraw(bankService, currentlyLoggedInCustomer, bankSelfAccount);
+                    }
+                    else if (option == CustomerMenu.Transfer)
+                    {
+                        Transfer(bankService, currentlyLoggedInCustomer);
+                    }
+                    else if (option == CustomerMenu.History)
+                    {
+                        ConsoleOutput.TransactionHistory(bankService.GetTransactionHistory(currentlyLoggedInCustomer));
+                    }
+                    else
+                    {
+                        ConsoleOutput.EnterValidOption();
+                    }
+
+                    ConsoleOutput.CustomerMenu();
+                    option = (CustomerMenu)Convert.ToInt32(TakeUserInput.Input());
+                }
             }
+
+
+            
         }
 
 

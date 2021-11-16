@@ -37,9 +37,11 @@ namespace ATM.Services
             return customer.Transactions;
         }
 
-        public bool Login(string customerName, string password)
+        public Customer Login(string customerName, string password, SQLService sqlService)
         {
-            return AlphaBank.Customers[customerName].Password == password;
+
+
+            return null;
         }
 
         public void AddTransaction(Customer sender, Customer reciever, double amount, TransactionType transactionType)
@@ -77,17 +79,14 @@ namespace ATM.Services
 
         }
 
-        public bool CustomerExists(string customerName)
-        {
-            return AlphaBank.Customers.ContainsKey(customerName);
-        }
+        
 
         public double GetBalance(Customer customer)
         {
             return customer.Balance;
         }
 
-        public Customer GetCustomer(string customerName)
+        public Customer GetCustomer(string customerName,  SQLService sqlService)
         {
             if (AlphaBank.Customers.ContainsKey(customerName)) return AlphaBank.Customers[customerName];
             else return null;

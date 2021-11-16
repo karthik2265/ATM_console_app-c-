@@ -58,7 +58,7 @@ namespace ATM.Models
             currentDate = DateTime.Now;
             string date = currentDate.ToShortDateString();
             string Id = "";
-            for (int i = 0; i < 3; i++) Id += name;
+            for (int i = 0; i < 3; i++) Id += name[i];
             Id += date;
             return Id;
         }
