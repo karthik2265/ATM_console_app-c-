@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Data.SqlClient;
 using ATM.Models;
 using System.Data;
+using ATM.Models.enums;
 
 namespace ATM.Services
 {
@@ -46,7 +47,12 @@ namespace ATM.Services
                 string customerPassword = Convert.ToString(customerData[2]);
                 if (customerName == name && customerPassword == password)
                 {
-
+                    string id = Convert.ToString(customerData[0]);
+                    double balance = Convert.ToDouble(customerData[3]);
+                    AccountStatus status = (AccountStatus) Enum.Parse(typeof(AccountStatus), Convert.ToString(customerData[4]));
+                    string bankId = Convert.ToString(customerData[5]);
+                    Customer c = new(id, name, password, balance, status, bankId);
+                    return c;
                 }
             }
             return null;

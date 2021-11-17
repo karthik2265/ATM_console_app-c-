@@ -38,12 +38,12 @@ namespace ATM.Services
             }
         }
 
-        public static InputValidation UserExists(BankService manager, string userName, string accountId)
-        {
-            Customer user = manager.GetCustomer(userName);
-            if (user == null || user.Id != accountId) return InputValidation.UserDoesntExist;
-            else return InputValidation.Success;
-        }
+        //public static InputValidation UserExists(BankService manager, string userName, string accountId)
+        //{
+        //    Customer user = manager.GetCustomer(userName);
+        //    if (user == null || user.Id != accountId) return InputValidation.UserDoesntExist;
+        //    else return InputValidation.Success;
+        //}
     }
         
 }

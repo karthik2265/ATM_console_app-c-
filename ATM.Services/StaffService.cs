@@ -65,21 +65,21 @@ namespace ATM.Services
             return true;
         }
 
-        public bool RevertTransaction(string txnId)
-        {
-            if (AlphaBank.Transactions.ContainsKey(txnId))
-            {
-                Transaction transaction = AlphaBank.Transactions[txnId];
-                double amount = transaction.Amount;
-                Customer sender = GetCustomer(transaction.SenderAccountId);
-                Customer reciever = GetCustomer(transaction.RecieverAccountId);
-                TransferAmount(reciever, sender, amount);
-                AddTransaction(reciever, sender, amount, TransactionType.Credit);
-                AddTransaction(sender, reciever, amount, TransactionType.Debit);
-                return true;
-            }
-            return false;
-        }
+        //public bool RevertTransaction(string txnId)
+        //{
+        //    if (AlphaBank.Transactions.ContainsKey(txnId))
+        //    {
+        //        Transaction transaction = AlphaBank.Transactions[txnId];
+        //        double amount = transaction.Amount;
+        //        Customer sender = GetCustomer(transaction.SenderAccountId);
+        //        Customer reciever = GetCustomer(transaction.RecieverAccountId);
+        //        TransferAmount(reciever, sender, amount);
+        //        AddTransaction(reciever, sender, amount, TransactionType.Credit);
+        //        AddTransaction(sender, reciever, amount, TransactionType.Debit);
+        //        return true;
+        //    }
+        //    return false;
+        //}
 
         public bool UpdateCurrencyAndExchangerate(string currency, double exchangerate)
         {

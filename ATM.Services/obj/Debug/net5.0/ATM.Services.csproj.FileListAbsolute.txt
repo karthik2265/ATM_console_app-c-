@@ -42,3 +42,4 @@ C:\Technovert\atm_csharp\ATM.Services\obj\Debug\net5.0\ATM.Services.csproj.CoreC
 C:\Technovert\atm_csharp\ATM.Services\obj\Debug\net5.0\ATM.Services.dll
 C:\Technovert\atm_csharp\ATM.Services\obj\Debug\net5.0\ref\ATM.Services.dll
 C:\Technovert\atm_csharp\ATM.Services\obj\Debug\net5.0\ATM.Services.pdb
+C:\Technovert\atm_csharp\ATM.Services\obj\Debug\net5.0\ATM.Services.csproj.CopyComplete

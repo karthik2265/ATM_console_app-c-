@@ -9,6 +9,7 @@ namespace ATM.Models.enums
     public enum AccountStatus
     {
         Active,
+        active,
         Inactive,
         Paused
     }

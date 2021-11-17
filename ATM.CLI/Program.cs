@@ -94,36 +94,36 @@ namespace ATM.CLI
             else ConsoleOutput.InvalidInput();
         }
 
-        public static void Transfer(BankService manager, Customer sender)
-        {
-            string recieverName = TakeUserInput.RecieverName();
-            string recieverAccountId = TakeUserInput.RecieverAccountId();
-            InputValidation status;
-            status = InputValidator.UserExists(manager, recieverName, recieverAccountId);
-            // if reciever exists
-            if (status == InputValidation.Success)
-            {
-                // check if sender entered a valid amount to send to reciever
-                Customer reciever = manager.GetCustomer(recieverName);
-                string transferInput = TakeUserInput.AmountToTransfer();
-                status = InputValidator.IsValidAmount(transferInput, manager.GetBalance(sender));
-                if (status == InputValidation.Success)
-                {
-                    double transferAmount = Convert.ToDouble(transferInput);
-                    ConsoleOutput.SuccessfulTransfer(transferAmount, recieverName);
-                    manager.AddTransaction(sender, reciever, transferAmount, TransactionType.Debit);
-                    manager.AddTransaction(reciever, sender, transferAmount, TransactionType.Credit);
-                    manager.TransferAmount(sender, reciever, transferAmount);
-                }
-                else if (status == InputValidation.InsufficientBalance) ConsoleOutput.InSufficientBalance(manager.GetBalance(sender));
-                else ConsoleOutput.InvalidInput();
-            }
-            // if reciever doesnt exist
-            else
-            {
-                ConsoleOutput.UserDoesntExist();
-            }
-        }
+        //public static void Transfer(BankService manager, Customer sender)
+        //{
+        //    string recieverName = TakeUserInput.RecieverName();
+        //    string recieverAccountId = TakeUserInput.RecieverAccountId();
+        //    InputValidation status;
+        //    status = InputValidator.UserExists(manager, recieverName, recieverAccountId);
+        //    // if reciever exists
+        //    if (status == InputValidation.Success)
+        //    {
+        //        // check if sender entered a valid amount to send to reciever
+        //        Customer reciever = manager.GetCustomer(recieverName);
+        //        string transferInput = TakeUserInput.AmountToTransfer();
+        //        status = InputValidator.IsValidAmount(transferInput, manager.GetBalance(sender));
+        //        if (status == InputValidation.Success)
+        //        {
+        //            double transferAmount = Convert.ToDouble(transferInput);
+        //            ConsoleOutput.SuccessfulTransfer(transferAmount, recieverName);
+        //            manager.AddTransaction(sender, reciever, transferAmount, TransactionType.Debit);
+        //            manager.AddTransaction(reciever, sender, transferAmount, TransactionType.Credit);
+        //            manager.TransferAmount(sender, reciever, transferAmount);
+        //        }
+        //        else if (status == InputValidation.InsufficientBalance) ConsoleOutput.InSufficientBalance(manager.GetBalance(sender));
+        //        else ConsoleOutput.InvalidInput();
+        //    }
+        //    // if reciever doesnt exist
+        //    else
+        //    {
+        //        ConsoleOutput.UserDoesntExist();
+        //    }
+        //}
 
         public static void CreateAccountForCustomer(BankService manager, SQLService sqlService)
         {
@@ -185,7 +185,7 @@ namespace ATM.CLI
                     }
                     else if (option == CustomerMenu.Transfer)
                     {
-                        Transfer(bankService, currentlyLoggedInCustomer);
+                        //Transfer(bankService, currentlyLoggedInCustomer);
                     }
                     else if (option == CustomerMenu.History)
                     {
@@ -201,8 +201,6 @@ namespace ATM.CLI
                 }
             }
 
-
-            
         }
 
 
@@ -257,13 +255,13 @@ namespace ATM.CLI
             return true;
         }
 
-        public static bool ShowTransactionHistory(StaffService staffService)
-        {
-            string accId = TakeUserInput.AccountId();
-            Customer customer = staffService.GetCustomer(accId);
-            ConsoleOutput.TransactionHistory(staffService.GetTransactionHistory(customer));
-            return true;
-        }
+        //public static bool ShowTransactionHistory(StaffService staffService)
+        //{
+        //    string accId = TakeUserInput.AccountId();
+        //    Customer customer = staffService.GetCustomer(accId);
+        //    ConsoleOutput.TransactionHistory(staffService.GetTransactionHistory(customer));
+        //    return true;
+        //}
 
         public static void StaffLogin(SQLService sqlService)
         {
@@ -302,12 +300,12 @@ namespace ATM.CLI
                 }
                 else if (option == StaffMenu.ShowTransactionHistory)
                 {
-                    ShowTransactionHistory(staffService);
+                    //ShowTransactionHistory(staffService);
                 }
                 else if (option == StaffMenu.RevertTransaction)
                 {
-                    string txnId = TakeUserInput.TransactionId();
-                    staffService.RevertTransaction(txnId);
+                    //string txnId = TakeUserInput.TransactionId();
+                    //staffService.RevertTransaction(txnId);
                 }
                 else
                 {

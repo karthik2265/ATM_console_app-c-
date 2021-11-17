@@ -7,7 +7,7 @@ using ATM.Services.Interfaces;
 
 namespace ATM.Services
 {
-    public class BankService : IBankService
+    public class BankService 
     {
         public Bank AlphaBank;
 
@@ -39,9 +39,7 @@ namespace ATM.Services
 
         public Customer Login(string customerName, string password, SQLService sqlService)
         {
-
-
-            return null;
+            return sqlService.LogIn(customerName, password);
         }
 
         public void AddTransaction(Customer sender, Customer reciever, double amount, TransactionType transactionType)

@@ -38,5 +38,11 @@ namespace ATM.Models
             this.Status = status;
             this.BankId = bankId;
         }
+
+        public Customer(string id, string name, string password, double balance, AccountStatus status, string bankId) : this(name, password, bankId, status)
+        {
+            this.Id = id;
+            this.Balance = balance;
+        }
     }
 }
