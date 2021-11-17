@@ -64,13 +64,14 @@ namespace ATM.CLI
 
         }
 
-        public static void Deposit(BankService manager, Customer customer, Customer BankSelfAccount)
+        public static void Deposit(BankService manager, Customer customer, Customer BankSelfAccount, SQLService sqLService)
         {
             string depositInput = TakeUserInput.DepositAmount();
             InputValidation status = InputValidator.IsDepositable(depositInput);
             if (status == InputValidation.Success)
             {
                 double depositAmount = Convert.ToDouble(depositInput);
+                sqLService.UpdateCustomerField(customer, "balance", Convert.ToString(depositAmount+customer.Balance));
                 ConsoleOutput.SuccesfullyDeposited(depositAmount);
                 manager.AddTransaction(customer, BankSelfAccount, depositAmount, TransactionType.Deposit);
                 manager.DepositAmount(customer, depositAmount);
@@ -176,7 +177,7 @@ namespace ATM.CLI
                 {
                     if (option == CustomerMenu.Deposit)
                     {
-                        Deposit(bankService, currentlyLoggedInCustomer, bankSelfAccount);
+                        Deposit(bankService, currentlyLoggedInCustomer, bankSelfAccount, sqlService);
 
                     }
                     else if (option == CustomerMenu.Withdraw)

@@ -39,7 +39,7 @@ namespace ATM.Services
 
         public Customer Login(string customerName, string password, SQLService sqlService)
         {
-            return sqlService.LogIn(customerName, password);
+            return sqlService.CustomerLogIn(customerName, password);
         }
 
         public void AddTransaction(Customer sender, Customer reciever, double amount, TransactionType transactionType)

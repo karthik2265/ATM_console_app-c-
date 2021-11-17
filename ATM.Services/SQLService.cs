@@ -35,7 +35,7 @@ namespace ATM.Services
             }
         }
 
-        public Customer LogIn(string name, string password)
+        public Customer CustomerLogIn(string name, string password)
         {
             string query = "SELECT * FROM Customers";
             SqlCommand command = new(query, connection);
@@ -57,6 +57,22 @@ namespace ATM.Services
             }
             return null;
         } 
+
+        public bool UpdateCustomerField(Customer customer, string columnName, string value)
+        {
+            string query = $"UPDATE Customers SET {columnName} = {value} WHERE id = {customer.Id}";
+            SqlCommand command = new(query, connection);
+            try
+            {
+                command.ExecuteNonQuery();
+                return true;
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e);
+                return false;
+            }
+        }
 
         public List<Bank> GetBanks()
         {
