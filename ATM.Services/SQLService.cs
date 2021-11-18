@@ -52,15 +52,17 @@ namespace ATM.Services
                     AccountStatus status = (AccountStatus) Enum.Parse(typeof(AccountStatus), Convert.ToString(customerData[4]));
                     string bankId = Convert.ToString(customerData[5]);
                     Customer c = new(id, name, password, balance, status, bankId);
+                    reader.Close();
                     return c;
                 }
             }
+            reader.Close();
             return null;
         } 
 
         public bool UpdateCustomerField(Customer customer, string columnName, string value)
         {
-            string query = $"UPDATE Customers SET {columnName} = {value} WHERE id = {customer.Id}";
+            string query = $"UPDATE Customers SET {columnName} = {value} WHERE id = '{customer.Id}'";
             SqlCommand command = new(query, connection);
             try
             {
@@ -91,6 +93,30 @@ namespace ATM.Services
 
             reader.Close();
             return res;
+        }
+
+        public bool AddTransaction(Transaction transaction)
+        {
+            string id = Convert.ToString(transaction.Id);
+            string senderAccId = Convert.ToString(transaction.SenderAccountId);
+            string recieverAccId = Convert.ToString(transaction.RecieverAccountId);
+            string bankId = Convert.ToString(transaction.BankId);
+            string amount = Convert.ToString(transaction.Amount);
+            string transactionType = Convert.ToString(transaction.Type);
+            string date = transaction.On.ToString("yyyy-MM-dd HH:mm:ss.fff"); ;
+
+            string query = $"INSERT INTO Transactions VALUES('{id}', '{senderAccId}', '{recieverAccId}', '{bankId}', {amount}, '{transactionType}', '{date}')";
+            SqlCommand command = new(query, connection);
+            try
+            {
+                command.ExecuteNonQuery();
+                return true;
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e);
+                return false;
+            }
         }
 
     }

@@ -42,19 +42,18 @@ namespace ATM.Services
             return sqlService.CustomerLogIn(customerName, password);
         }
 
-        public void AddTransaction(Customer sender, Customer reciever, double amount, TransactionType transactionType)
+        public void AddTransaction(Customer sender, Customer reciever, double amount, TransactionType transactionType, SQLService sqlService)
         {
             DateTime date = DateTime.Now;
-            Transaction transaction = new Transaction(sender.Name, reciever.Name, amount, date, transactionType);
-            AlphaBank.Transactions.Add(transaction.Id ,transaction);
-            sender.Transactions.Add(transaction);
+            Transaction transaction = new Transaction(sender.Id, reciever.Id, amount, date, transactionType);
+            sqlService.AddTransaction(transaction);
         }
 
-        public bool DepositAmount(Customer customer, double amount)
-        {
-            customer.Balance += amount;
-            return true;
-        }
+        //public bool DepositAmount(Customer customer, double amount)
+        //{
+        //    customer.Balance += amount;
+        //    return true;
+        //}
 
         public bool WithdrawAmount(Customer customer, double amount)
         {

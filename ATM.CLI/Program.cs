@@ -71,29 +71,30 @@ namespace ATM.CLI
             if (status == InputValidation.Success)
             {
                 double depositAmount = Convert.ToDouble(depositInput);
-                sqLService.UpdateCustomerField(customer, "balance", Convert.ToString(depositAmount+customer.Balance));
+                customer.Balance += depositAmount;
+                sqLService.UpdateCustomerField(customer, "balance", Convert.ToString(customer.Balance));
                 ConsoleOutput.SuccesfullyDeposited(depositAmount);
-                manager.AddTransaction(customer, BankSelfAccount, depositAmount, TransactionType.Deposit);
-                manager.DepositAmount(customer, depositAmount);
+                manager.AddTransaction(customer, BankSelfAccount, depositAmount, TransactionType.Deposit, sqLService);
+                //manager.DepositAmount(customer, depositAmount);
             }
             else if (status == InputValidation.InsufficientBalance) ConsoleOutput.InSufficientBalance(manager.GetBalance(customer));
             else ConsoleOutput.InvalidInput();
         }
 
-        public static void Withdraw(BankService manager, Customer customer, Customer bankSelfAccount)
-        {
-            string withdrawInput = TakeUserInput.WithdrawAmount();
-            InputValidation status = InputValidator.IsValidAmount(withdrawInput, manager.GetBalance(customer));
-            if (status == InputValidation.Success)
-            {
-                double withdrawAmount = Convert.ToDouble(withdrawInput);
-                ConsoleOutput.SuccesfullyWithdrawn(withdrawAmount);
-                manager.AddTransaction(bankSelfAccount, customer, withdrawAmount, TransactionType.Withdraw);
-                manager.WithdrawAmount(customer, withdrawAmount);
-            }
-            else if (status == InputValidation.InsufficientBalance) ConsoleOutput.InSufficientBalance(manager.GetBalance(customer));
-            else ConsoleOutput.InvalidInput();
-        }
+        //public static void Withdraw(BankService manager, Customer customer, Customer bankSelfAccount)
+        //{
+        //    string withdrawInput = TakeUserInput.WithdrawAmount();
+        //    InputValidation status = InputValidator.IsValidAmount(withdrawInput, manager.GetBalance(customer));
+        //    if (status == InputValidation.Success)
+        //    {
+        //        double withdrawAmount = Convert.ToDouble(withdrawInput);
+        //        ConsoleOutput.SuccesfullyWithdrawn(withdrawAmount);
+        //        manager.AddTransaction(bankSelfAccount, customer, withdrawAmount, TransactionType.Withdraw);
+        //        manager.WithdrawAmount(customer, withdrawAmount);
+        //    }
+        //    else if (status == InputValidation.InsufficientBalance) ConsoleOutput.InSufficientBalance(manager.GetBalance(customer));
+        //    else ConsoleOutput.InvalidInput();
+        //}
 
         //public static void Transfer(BankService manager, Customer sender)
         //{
@@ -182,7 +183,7 @@ namespace ATM.CLI
                     }
                     else if (option == CustomerMenu.Withdraw)
                     {
-                        Withdraw(bankService, currentlyLoggedInCustomer, bankSelfAccount);
+                        //Withdraw(bankService, currentlyLoggedInCustomer, bankSelfAccount);
                     }
                     else if (option == CustomerMenu.Transfer)
                     {
