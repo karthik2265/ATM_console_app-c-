@@ -49,11 +49,7 @@ namespace ATM.Services
             sqlService.AddTransaction(transaction);
         }
 
-        //public bool DepositAmount(Customer customer, double amount)
-        //{
-        //    customer.Balance += amount;
-        //    return true;
-        //}
+        
 
         public bool WithdrawAmount(Customer customer, double amount)
         {

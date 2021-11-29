@@ -1,6 +1,7 @@
 ﻿using ATM.Models;
 using ATM.Models.enums;
 using ATM.Services;
+using ATM.Services.DataModels;
 using System;
 using System.Data.SqlClient;
 using System.Linq;
@@ -12,18 +13,7 @@ namespace ATM.CLI
 
         static void Main()
         {
-            // connect to database
-            using (SqlConnection connection = new SqlConnection(@"Server=localhost\SQLEXPRESS;Database=bankingAppDB;Trusted_Connection=True;"))
-            {
-                try
-                {
-                    Console.WriteLine("Connecting to SQL Server ... ");
-                    Console.WriteLine();
-                    connection.Open();
-                    SQLService sqlService = new(connection);
-                    sqlService.GetBanks();
-                    Console.WriteLine("connected to databse successfully");
-                    Console.WriteLine();
+
                     //       1) setup a new bank
                     //       2) staff login
                     //       3) customer login
@@ -36,30 +26,21 @@ namespace ATM.CLI
 
                     if (option == Mainmenu.SetupBank)
                     {
-                        SetupBank(connection);
+                        SetupBank();
                     }
 
                     if (option == Mainmenu.CustomerLogin)
                     {
-                        CustomerLogin(sqlService);
+                        CustomerLogin();
                     }
 
                     if (option == Mainmenu.StaffLogin)
                     {
-                        StaffLogin(sqlService);
+                        StaffLogin();
                     }
 
-                }
-                catch (SqlException e)
-                {
-                    Console.WriteLine(e.ToString());
-                }
 
-                finally
-                {
-                    connection.Close();
-                }
-            }
+               
 
 
         }
@@ -135,73 +116,73 @@ namespace ATM.CLI
             ConsoleOutput.AccountCreationSuccesful();
         }
 
-        public static void CustomerLogin(SQLService sqlService)
+        public static void CustomerLogin()
         {
-            var banks = sqlService.GetBanks();
-            var bankNames = banks.Select(x => x.Name).ToList();
-            string bankName = TakeUserInput.ChooseAnOption(bankNames, "Bank");
-            Bank bank = banks.Find(x => x.Name == bankName);
-            BankService bankService = new BankService(bank);
-            Customer bankSelfAccount = new(bankName, "password", bank.Id);
+            //var banks = sqlService.GetBanks();
+            //var bankNames = banks.Select(x => x.Name).ToList();
+            //string bankName = TakeUserInput.ChooseAnOption(bankNames, "Bank");
+            //Bank bank = banks.Find(x => x.Name == bankName);
+            //BankService bankService = new BankService(bank);
+            //Customer bankSelfAccount = new(bankName, "password", bank.Id);
 
-            ConsoleOutput.LoginOrCreateAnAccount();
+            //ConsoleOutput.LoginOrCreateAnAccount();
 
-            // take user input to create account or login
-            bool createAccount = Convert.ToInt32(TakeUserInput.Input()) == 1;
+            //// take user input to create account or login
+            //bool createAccount = Convert.ToInt32(TakeUserInput.Input()) == 1;
 
 
-            if (createAccount)
-            {
-                // create a new account and add it to database
-                CreateAccountForCustomer(bankService, sqlService);
-            }
+            //if (createAccount)
+            //{
+            //    // create a new account and add it to database
+            //    CreateAccountForCustomer(bankService, sqlService);
+            //}
 
-            // log in and ask user what he wants to do
-            string customerName = TakeUserInput.UserName();
-            string password = TakeUserInput.Password();
+            //// log in and ask user what he wants to do
+            //string customerName = TakeUserInput.UserName();
+            //string password = TakeUserInput.Password();
 
-            Customer currentlyLoggedInCustomer = bankService.Login(customerName, password, sqlService);
+            //Customer currentlyLoggedInCustomer = bankService.Login(customerName, password, sqlService);
 
-            if (currentlyLoggedInCustomer == null)
-            {
-                ConsoleOutput.InvalidInput();
-            }
-            else
-            {
-                ConsoleOutput.UserLoggedIn(customerName);
+            //if (currentlyLoggedInCustomer == null)
+            //{
+            //    ConsoleOutput.InvalidInput();
+            //}
+            //else
+            //{
+            //    ConsoleOutput.UserLoggedIn(customerName);
 
-                ConsoleOutput.CustomerMenu();
+            //    ConsoleOutput.CustomerMenu();
 
-                CustomerMenu option = (CustomerMenu)Convert.ToInt32(TakeUserInput.Input());
+            //    CustomerMenu option = (CustomerMenu)Convert.ToInt32(TakeUserInput.Input());
 
-                while (option != CustomerMenu.Quit)
-                {
-                    if (option == CustomerMenu.Deposit)
-                    {
-                        Deposit(bankService, currentlyLoggedInCustomer, bankSelfAccount, sqlService);
+            //    while (option != CustomerMenu.Quit)
+            //    {
+            //        if (option == CustomerMenu.Deposit)
+            //        {
+            //            Deposit(bankService, currentlyLoggedInCustomer, bankSelfAccount, sqlService);
 
-                    }
-                    else if (option == CustomerMenu.Withdraw)
-                    {
-                        //Withdraw(bankService, currentlyLoggedInCustomer, bankSelfAccount);
-                    }
-                    else if (option == CustomerMenu.Transfer)
-                    {
-                        //Transfer(bankService, currentlyLoggedInCustomer);
-                    }
-                    else if (option == CustomerMenu.History)
-                    {
-                        ConsoleOutput.TransactionHistory(bankService.GetTransactionHistory(currentlyLoggedInCustomer));
-                    }
-                    else
-                    {
-                        ConsoleOutput.EnterValidOption();
-                    }
+            //        }
+            //        else if (option == CustomerMenu.Withdraw)
+            //        {
+            //            //Withdraw(bankService, currentlyLoggedInCustomer, bankSelfAccount);
+            //        }
+            //        else if (option == CustomerMenu.Transfer)
+            //        {
+            //            //Transfer(bankService, currentlyLoggedInCustomer);
+            //        }
+            //        else if (option == CustomerMenu.History)
+            //        {
+            //            ConsoleOutput.TransactionHistory(bankService.GetTransactionHistory(currentlyLoggedInCustomer));
+            //        }
+            //        else
+            //        {
+            //            ConsoleOutput.EnterValidOption();
+            //        }
 
-                    ConsoleOutput.CustomerMenu();
-                    option = (CustomerMenu)Convert.ToInt32(TakeUserInput.Input());
-                }
-            }
+            //        ConsoleOutput.CustomerMenu();
+            //        option = (CustomerMenu)Convert.ToInt32(TakeUserInput.Input());
+            //    }
+            //}
 
         }
 
@@ -265,67 +246,65 @@ namespace ATM.CLI
         //    return true;
         //}
 
-        public static void StaffLogin(SQLService sqlService)
+        public static void StaffLogin()
         {
-            StaffService staffService = new StaffService("1", "alpha");
+            //StaffService staffService = new StaffService("1", "alpha");
 
 
+            //Staff currentlyLoggedInStaff = LogInAndGetStaff(staffService);
+
+            //ConsoleOutput.UserLoggedIn(currentlyLoggedInStaff.Name);
 
 
+            //ConsoleOutput.StaffMenu();
 
-            Staff currentlyLoggedInStaff = LogInAndGetStaff(staffService);
+            //StaffMenu option = (StaffMenu)Convert.ToInt32(TakeUserInput.Input());
 
-            ConsoleOutput.UserLoggedIn(currentlyLoggedInStaff.Name);
-
-
-            ConsoleOutput.StaffMenu();
-
-            StaffMenu option = (StaffMenu)Convert.ToInt32(TakeUserInput.Input());
-
-            while (option != StaffMenu.Quit)
-            {
-                if (option == StaffMenu.CreateAccount)
-                {
-                    CreateAccountForCustomer(staffService, sqlService);
-                }
-                else if (option == StaffMenu.UpdateAccountStatus)
-                {
-                    UpdateAccountStatus(staffService);
-                }
-                else if (option == StaffMenu.UpdateAcceptedCurrency)
-                {
-                    UpdateAcceptedCurrency(staffService);
-                }
-                else if (option == StaffMenu.UpdateServiceCharges)
-                {
-                    UpdateServiceCharges(staffService);
-                }
-                else if (option == StaffMenu.ShowTransactionHistory)
-                {
-                    //ShowTransactionHistory(staffService);
-                }
-                else if (option == StaffMenu.RevertTransaction)
-                {
-                    //string txnId = TakeUserInput.TransactionId();
-                    //staffService.RevertTransaction(txnId);
-                }
-                else
-                {
-                    ConsoleOutput.EnterValidOption();
-                }
-                option = (StaffMenu)Convert.ToInt32(TakeUserInput.Input());
-            }
+            //while (option != StaffMenu.Quit)
+            //{
+            //    if (option == StaffMenu.CreateAccount)
+            //    {
+            //        CreateAccountForCustomer(staffService, sqlService);
+            //    }
+            //    else if (option == StaffMenu.UpdateAccountStatus)
+            //    {
+            //        UpdateAccountStatus(staffService);
+            //    }
+            //    else if (option == StaffMenu.UpdateAcceptedCurrency)
+            //    {
+            //        UpdateAcceptedCurrency(staffService);
+            //    }
+            //    else if (option == StaffMenu.UpdateServiceCharges)
+            //    {
+            //        UpdateServiceCharges(staffService);
+            //    }
+            //    else if (option == StaffMenu.ShowTransactionHistory)
+            //    {
+            //        //ShowTransactionHistory(staffService);
+            //    }
+            //    else if (option == StaffMenu.RevertTransaction)
+            //    {
+            //        //string txnId = TakeUserInput.TransactionId();
+            //        //staffService.RevertTransaction(txnId);
+            //    }
+            //    else
+            //    {
+            //        ConsoleOutput.EnterValidOption();
+            //    }
+            //    option = (StaffMenu)Convert.ToInt32(TakeUserInput.Input());
+            //}
 
 
         }
 
-        public static void SetupBank(SqlConnection connection)
+        public static void SetupBank()
         {
             string bankName = TakeUserInput.BankName();
             string bankId = TakeUserInput.BankId();
-            string query = $"INSERT INTO Banks VALUES('{bankName}', {bankId}, 0, 5, 2, 6, 'INR', 1)";
-            SqlCommand command = new SqlCommand(query, connection);
-            command.ExecuteNonQuery();
+            BankDbContext dbContext = new();
+            var b = new Bank(bankId, bankName, Currency.INR);
+            dbContext.Add(b);
+            dbContext.SaveChanges();
         }
     }
 }
