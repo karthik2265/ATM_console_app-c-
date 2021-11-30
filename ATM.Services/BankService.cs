@@ -21,21 +21,21 @@ namespace ATM.Services
             this.AlphaBank = new Bank(id, name, Currency.INR);
         }
 
-        public bool StaffLogin(string name, string password)
-        {
-            return AlphaBank.Staff[name].Password == password;
-        }
+        //public bool StaffLogin(string name, string password)
+        //{
+        //    return AlphaBank.Staff[name].Password == password;
+        //}
 
-        public bool StaffExists(string name)
-        {
-            return AlphaBank.Staff.ContainsKey(name);
-        }
+        //public bool StaffExists(string name)
+        //{
+        //    return AlphaBank.Staff.ContainsKey(name);
+        //}
 
 
-        public List<Transaction> GetTransactionHistory(Customer customer)
-        {
-            return customer.Transactions;
-        }
+        //public List<Transaction> GetTransactionHistory(Customer customer)
+        //{
+        //    return customer.Transactions;
+        //}
 
         public Customer Login(string customerName, string password, SQLService sqlService)
         {
@@ -79,17 +79,17 @@ namespace ATM.Services
             return customer.Balance;
         }
 
-        public Customer GetCustomer(string customerName,  SQLService sqlService)
-        {
-            if (AlphaBank.Customers.ContainsKey(customerName)) return AlphaBank.Customers[customerName];
-            else return null;
-        }
+        //public Customer GetCustomer(string customerName,  SQLService sqlService)
+        //{
+        //    if (AlphaBank.Customers.ContainsKey(customerName)) return AlphaBank.Customers[customerName];
+        //    else return null;
+        //}
 
-        public Staff GetStaff(string name)
-        {
-            if (AlphaBank.Staff.ContainsKey(name)) return AlphaBank.Staff[name];
-            else return null;
-        }
+        //public Staff GetStaff(string name)
+        //{
+        //    if (AlphaBank.Staff.ContainsKey(name)) return AlphaBank.Staff[name];
+        //    else return null;
+        //}
 
 
     }

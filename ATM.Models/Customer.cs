@@ -18,16 +18,19 @@ namespace ATM.Models
         public string Name;
         public string Password;
         public double Balance;
-        public List<Transaction> Transactions;
         public string BankId;
-        public AccountStatus Status;  
+        public string accountStatus;
+
+        public Customer()
+        {
+
+        }
 
         public Customer(string userName, string password, string bankId, AccountStatus status = AccountStatus.Active)
         {
             this.Name = userName;
             this.Password = password;
             this.Balance = 0;
-            this.Transactions = new List<Transaction>();
             currentDate = DateTime.Now;
             string date = currentDate.ToShortDateString();
             // set accountId
@@ -35,7 +38,7 @@ namespace ATM.Models
             for (int i=0; i<3; i++)  Id += this.Name[i];
             Id += date;
             // status
-            this.Status = status;
+            this.accountStatus = status.ToString();
             this.BankId = bankId;
         }
 

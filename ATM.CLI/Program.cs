@@ -3,7 +3,6 @@ using ATM.Models.enums;
 using ATM.Services;
 using ATM.Services.DataModels;
 using System;
-using System.Data.SqlClient;
 using System.Linq;
 
 namespace ATM.CLI
@@ -14,34 +13,30 @@ namespace ATM.CLI
         static void Main()
         {
 
-                    //       1) setup a new bank
-                    //       2) staff login
-                    //       3) customer login
+            //       1) setup a new bank
+            //       2) staff login
+            //       3) customer login
 
-                    ConsoleOutput.Welcome();
-                    ConsoleOutput.Mainmenu();
-
-
-                    Mainmenu option = (Mainmenu)(Convert.ToInt32(TakeUserInput.Input()));
-
-                    if (option == Mainmenu.SetupBank)
-                    {
-                        SetupBank();
-                    }
-
-                    if (option == Mainmenu.CustomerLogin)
-                    {
-                        CustomerLogin();
-                    }
-
-                    if (option == Mainmenu.StaffLogin)
-                    {
-                        StaffLogin();
-                    }
+            ConsoleOutput.Welcome();
+            ConsoleOutput.Mainmenu();
 
 
-               
+            Mainmenu option = (Mainmenu)(Convert.ToInt32(TakeUserInput.Input()));
 
+            if (option == Mainmenu.SetupBank)
+            {
+                SetupBank();
+            }
+
+            if (option == Mainmenu.CustomerLogin)
+            {
+                CustomerLogin();
+            }
+
+            if (option == Mainmenu.StaffLogin)
+            {
+                StaffLogin();
+            }
 
         }
 
@@ -118,6 +113,25 @@ namespace ATM.CLI
 
         public static void CustomerLogin()
         {
+            CustomerDbContext cDbContext = new();
+            var newCustomer = new Customer("akash", "440", "2");
+            cDbContext.Add(newCustomer);
+            cDbContext.SaveChanges();
+            //BankDbContext bankDbContext = new();
+            //var banks = bankDbContext.Banks;
+            //try
+            //{
+            //    foreach (var bank in banks.ToList<Bank>())
+            //    {
+            //        Console.WriteLine(bank);
+            //    }
+            //}
+            //catch (Exception e)
+            //{
+            //    Console.WriteLine(e);
+            //}
+            
+
             //var banks = sqlService.GetBanks();
             //var bankNames = banks.Select(x => x.Name).ToList();
             //string bankName = TakeUserInput.ChooseAnOption(bankNames, "Bank");
@@ -187,38 +201,38 @@ namespace ATM.CLI
         }
 
 
-        public static Staff LogInAndGetStaff(StaffService staffService)
-        {
-            string name;
-            string password;
+        //public static Staff LogInAndGetStaff(StaffService staffService)
+        //{
+        //    string name;
+        //    string password;
 
-            do
-            {
-                name = TakeUserInput.UserName();
+        //    do
+        //    {
+        //        name = TakeUserInput.UserName();
 
-            } while (staffService.StaffExists(name));
-            do
-            {
-                password = TakeUserInput.Password();
-            } while (staffService.StaffLogin(name, password));
-            return staffService.GetStaff(name);
-        }
+        //    } while (staffService.StaffExists(name));
+        //    do
+        //    {
+        //        password = TakeUserInput.Password();
+        //    } while (staffService.StaffLogin(name, password));
+        //    return staffService.GetStaff(name);
+        //}
 
-        public static bool UpdateAccountStatus(StaffService staffService)
-        {
-            string accId = TakeUserInput.AccountId();
-            if (staffService.FindAccount(accId))
-            {
-                ConsoleOutput.UpdateAccountStatusOptions();
-                AccountStatus accStatus = (AccountStatus)Convert.ToInt32(TakeUserInput.Input());
-                staffService.UpdateAccountStatus(accId, accStatus);
-            }
-            else
-            {
-                ConsoleOutput.UserDoesntExist();
-            }
-            return true;
-        }
+        //public static bool UpdateAccountStatus(StaffService staffService)
+        //{
+        //    string accId = TakeUserInput.AccountId();
+        //    if (staffService.FindAccount(accId))
+        //    {
+        //        ConsoleOutput.UpdateAccountStatusOptions();
+        //        AccountStatus accStatus = (AccountStatus)Convert.ToInt32(TakeUserInput.Input());
+        //        staffService.UpdateAccountStatus(accId, accStatus);
+        //    }
+        //    else
+        //    {
+        //        ConsoleOutput.UserDoesntExist();
+        //    }
+        //    return true;
+        //}
 
         public static bool UpdateAcceptedCurrency(StaffService staffService)
         {
@@ -297,14 +311,14 @@ namespace ATM.CLI
 
         }
 
-        public static void SetupBank()
-        {
-            string bankName = TakeUserInput.BankName();
-            string bankId = TakeUserInput.BankId();
-            BankDbContext dbContext = new();
-            var b = new Bank(bankId, bankName, Currency.INR);
-            dbContext.Add(b);
-            dbContext.SaveChanges();
-        }
+        //public static void SetupBank()
+        //{
+        //    string bankName = TakeUserInput.BankName();
+        //    string bankId = TakeUserInput.BankId();
+        //    BankDbContext dbContext = new();
+        //    var b = new Bank(bankId, bankName, Currency.INR);
+        //    dbContext.Add(b);
+        //    dbContext.SaveChanges();
+        //}
     }
 }

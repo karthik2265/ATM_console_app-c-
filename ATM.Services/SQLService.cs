@@ -21,7 +21,7 @@ namespace ATM.Services
         public bool AddCustomer(Customer customer)
         {
             // (id, name, password, balance, status, bankId)
-            string query = $"INSERT INTO Customers VALUES('{customer.Id}', '{customer.Name}', '{customer.Password}', {customer.Balance}, '{customer.Status}', '{customer.BankId}')";
+            string query = $"INSERT INTO Customers VALUES('{customer.Id}', '{customer.Name}', '{customer.Password}', {customer.Balance}, '{customer.accountStatus}', '{customer.BankId}')";
             SqlCommand command = new(query, connection);
             try
             {

@@ -5,8 +5,7 @@ namespace ATM.Models
 {
     public class Bank
     {
-        public Dictionary<string, Customer> Customers;
-        public Dictionary<string, Transaction> Transactions;
+       
         public string Name;
         public string Id;
         // RTGS and IMPS rates
@@ -19,16 +18,12 @@ namespace ATM.Models
         // accepted curreny and exchange rate
         public Currency AcceptedCurrency;
         public double ExchangeRate;
-        // staff
-        public Dictionary<string, Staff> Staff;
 
        
 
         public Bank(string id, string name, Currency acceptedCurrency)
         {
             this.Name = name;
-            this.Customers = new Dictionary<string, Customer>();
-            this.Transactions = new Dictionary<string, Transaction>();
             // set Id
             this.Id = setId(name);
             //  RTGS and IMPS rates

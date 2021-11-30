@@ -17,31 +17,31 @@ namespace ATM.Services
            Staff = new Staff(id, name, acessLevel);
         }
 
-        public bool FindAccount(string accId)
-        {
-            foreach (var x in AlphaBank.Customers)
-            {
-                Customer c = x.Value;
-                if (c.Id == accId) return true;
-            }
-            return false;
-        }
+        //public bool FindAccount(string accId)
+        //{
+        //    foreach (var x in AlphaBank.Customers)
+        //    {
+        //        Customer c = x.Value;
+        //        if (c.Id == accId) return true;
+        //    }
+        //    return false;
+        //}
 
-        public bool UpdateAccountStatus(string accId, AccountStatus status)
-        {
-            Customer c = null;
-            foreach (var x in AlphaBank.Customers)
-            {
-                c = x.Value;
-                if (c.Id == accId) break;
-            }
-            if (c != null)
-            {
-                c.Status = status;
-                return true;
-            }
-            return false;
-        }
+        //public bool UpdateAccountStatus(string accId, AccountStatus status)
+        //{
+        //    Customer c = null;
+        //    foreach (var x in AlphaBank.Customers)
+        //    {
+        //        c = x.Value;
+        //        if (c.Id == accId) break;
+        //    }
+        //    if (c != null)
+        //    {
+        //        c.accountStatus = status;
+        //        return true;
+        //    }
+        //    return false;
+        //}
 
         public bool UpdateServiceCharges(BankServiceCharges toBeUpdated, double newCharge)
         {
