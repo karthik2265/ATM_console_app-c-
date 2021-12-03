@@ -1,7 +1,10 @@
 {
   "ExpandedNodes": [
     "",
-    "\\ATM.CLI"
+    "\\ATM.CLI",
+    "\\ATM.CLI\\bin",
+    "\\ATM.CLI\\bin\\Debug",
+    "\\ATM.CLI\\bin\\Release"
   ],
   "PreviewInSolutionExplorer": false
 }

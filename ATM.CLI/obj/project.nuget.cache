@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "OZqdhCPVfISBxBTbU8vHvqkESKnE4no1kHyHIyhtnJHocpveXvbaGenA2ZPF3s8Jn2JNEvKSW3ZlsLH8uxHizg==",
+  "dgSpecHash": "ZaC7PpsSFJmrVd1TuT8q4CSkSMJmCyzBXRKDRXkdLp2cXWE1MPAK08Re1F1oqNIIsNgnUm0aI5re/6OLSYFCog==",
   "success": true,
-  "projectFilePath": "C:\\Technovert\\atm_csharp\\ATM.CLI\\ATM.CLI.csproj",
+  "projectFilePath": "C:\\Technovert\\ATM_csharp\\ATM.CLI\\ATM.CLI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\karth\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
     "C:\\Users\\karth\\.nuget\\packages\\microsoft.data.sqlclient\\2.0.1\\microsoft.data.sqlclient.2.0.1.nupkg.sha512",
@@ -102,7 +102,8 @@
     "C:\\Users\\karth\\.nuget\\packages\\system.xml.readerwriter\\4.3.0\\system.xml.readerwriter.4.3.0.nupkg.sha512",
     "C:\\Users\\karth\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512",
     "C:\\Users\\karth\\.nuget\\packages\\system.xml.xmldocument\\4.3.0\\system.xml.xmldocument.4.3.0.nupkg.sha512",
-    "C:\\Users\\karth\\.nuget\\packages\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512"
+    "C:\\Users\\karth\\.nuget\\packages\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512",
+    "C:\\Users\\karth\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\5.0.12\\microsoft.netcore.app.host.win-x64.5.0.12.nupkg.sha512"
   ],
   "logs": []
 }

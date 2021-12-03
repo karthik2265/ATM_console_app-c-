@@ -25,7 +25,7 @@ namespace ATM.CLI
 
             if (option == Mainmenu.SetupBank)
             {
-                SetupBank();
+                //SetupBank();
             }
 
             if (option == Mainmenu.CustomerLogin)
@@ -114,8 +114,8 @@ namespace ATM.CLI
         public static void CustomerLogin()
         {
             CustomerDbContext cDbContext = new();
-            var newCustomer = new Customer("akash", "440", "2");
-            cDbContext.Add(newCustomer);
+            var newCustomer = new Customer("paul", "474", "2");
+            cDbContext.Customers.Add(newCustomer);
             cDbContext.SaveChanges();
             //BankDbContext bankDbContext = new();
             //var banks = bankDbContext.Banks;

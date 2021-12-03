@@ -10,7 +10,7 @@ namespace ATM.Services.DataModels
 {
     public class CustomerDbContext : DbContext
     {
-        public DbSet<Customer> Customers;
+        public DbSet<Customer> Customers { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(connectionString: @"Server=localhost\SQLEXPRESS;Database=bankingAppDB;Trusted_Connection=True;");
@@ -18,6 +18,7 @@ namespace ATM.Services.DataModels
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Customer>().ToTable("Customer");
             modelBuilder.Entity<Customer>(entity =>
                 {
                     entity.Property(m => m.Id);

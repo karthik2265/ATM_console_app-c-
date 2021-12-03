@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Technovert\\atm_csharp\\ATM.Models\\ATM.Models.csproj",
+      "projectUniqueName": "C:\\Technovert\\ATM_csharp\\ATM.Models\\ATM.Models.csproj",
       "projectName": "ATM.Models",
-      "projectPath": "C:\\Technovert\\atm_csharp\\ATM.Models\\ATM.Models.csproj",
+      "projectPath": "C:\\Technovert\\ATM_csharp\\ATM.Models\\ATM.Models.csproj",
       "packagesPath": "C:\\Users\\karth\\.nuget\\packages\\",
-      "outputPath": "C:\\Technovert\\atm_csharp\\ATM.Models\\obj\\",
+      "outputPath": "C:\\Technovert\\ATM_csharp\\ATM.Models\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\karth\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -60,7 +60,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.402\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100\\RuntimeIdentifierGraph.json"
       }
     }
   }
