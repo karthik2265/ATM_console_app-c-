@@ -23,9 +23,10 @@ namespace ATM.CLI
 
             Mainmenu option = (Mainmenu)(Convert.ToInt32(TakeUserInput.Input()));
 
+
             if (option == Mainmenu.SetupBank)
             {
-                //SetupBank();
+                SetupBank();
             }
 
             if (option == Mainmenu.CustomerLogin)
@@ -35,6 +36,7 @@ namespace ATM.CLI
 
             if (option == Mainmenu.StaffLogin)
             {
+                Console.WriteLine("calling staff login method");
                 StaffLogin();
             }
 
@@ -113,10 +115,10 @@ namespace ATM.CLI
 
         public static void CustomerLogin()
         {
-            CustomerDbContext cDbContext = new();
-            var newCustomer = new Customer("paul", "474", "2");
-            cDbContext.Customers.Add(newCustomer);
-            cDbContext.SaveChanges();
+            //CustomerDbContext cDbContext = new();
+            //var newCustomer = new Customer("paul", "474", "2");
+            //cDbContext.Customers.Add(newCustomer);
+            //cDbContext.SaveChanges();
             //BankDbContext bankDbContext = new();
             //var banks = bankDbContext.Banks;
             //try
@@ -130,7 +132,7 @@ namespace ATM.CLI
             //{
             //    Console.WriteLine(e);
             //}
-            
+
 
             //var banks = sqlService.GetBanks();
             //var bankNames = banks.Select(x => x.Name).ToList();
@@ -262,8 +264,14 @@ namespace ATM.CLI
 
         public static void StaffLogin()
         {
-            //StaffService staffService = new StaffService("1", "alpha");
+            AtmDbContext sDbContext = new();
+            //sDbContext.Staffs.Add(new Staff("karthik", "qwerty", "1"));
+            //sDbContext.SaveChanges();
+            var s = sDbContext.Staffs;
 
+            var x = s.FirstOrDefault(x => x.Name == "karthik");
+            Console.WriteLine(x.Name);
+            //StaffService staffService = new StaffService("1", "alpha");
 
             //Staff currentlyLoggedInStaff = LogInAndGetStaff(staffService);
 
@@ -311,14 +319,14 @@ namespace ATM.CLI
 
         }
 
-        //public static void SetupBank()
-        //{
-        //    string bankName = TakeUserInput.BankName();
-        //    string bankId = TakeUserInput.BankId();
-        //    BankDbContext dbContext = new();
-        //    var b = new Bank(bankId, bankName, Currency.INR);
-        //    dbContext.Add(b);
-        //    dbContext.SaveChanges();
-        //}
+        public static void SetupBank()
+        {
+            //string bankName = TakeUserInput.BankName();
+            //string bankId = TakeUserInput.BankId();
+            //BankDbContext dbContext = new();
+            //var b = new Bank(bankId, bankName, Currency.INR);
+            //dbContext.Banks.Add(b);
+            //dbContext.SaveChanges();
+        }
     }
 }

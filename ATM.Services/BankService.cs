@@ -18,7 +18,7 @@ namespace ATM.Services
 
         public BankService(string id, string name)
         {
-            this.AlphaBank = new Bank(id, name, Currency.INR);
+            this.AlphaBank = new Bank(name);
         }
 
         //public bool StaffLogin(string name, string password)

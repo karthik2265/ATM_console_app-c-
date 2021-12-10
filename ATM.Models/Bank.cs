@@ -13,44 +13,30 @@ namespace ATM.Models
         public double IMPSChargeToSameBank;
         public double RTGSChargeToOtherBanks;
         public double IMPSChargeToOtherBanks;
-        // to set Id 
-        private DateTime currentDate;
         // accepted curreny and exchange rate
-        public Currency AcceptedCurrency;
+        public Currency Currency;
         public double ExchangeRate;
 
        
 
-        public Bank(string id, string name, Currency acceptedCurrency)
+
+       
+
+        public Bank(string name, double RTGSChargeToSameBank = 0, double IMPSChargeToSameBank = 0, double RTGSChargeToOtherBanks = 0, double IMPSChargeToOtherBanks = 0, Currency currency = Currency.INR, double exchangeRate = 1)
         {
             this.Name = name;
-            // set Id
-            this.Id = setId(name);
-            //  RTGS and IMPS rates
-            this.RTGSChargeToSameBank = 0;
-            this.IMPSChargeToSameBank = 5;
-            this.RTGSChargeToOtherBanks = 2;
-            this.RTGSChargeToOtherBanks = 6;
-            // currency and exchange rate
-            this.AcceptedCurrency = acceptedCurrency;
-            this.ExchangeRate = 1;
-
-        }
-
-        public Bank(string name, string id, double RTGSChargeToSameBank, double IMPSChargeToSameBank, double RTGSChargeToOtherBanks, double IMPSChargeToOtherBanks, Currency acceptedCurrency, double exchangeRate): this(id, name, acceptedCurrency)
-        {
-            //  RTGS and IMPS rates
             this.RTGSChargeToSameBank = RTGSChargeToSameBank;
             this.IMPSChargeToSameBank = IMPSChargeToSameBank;
             this.RTGSChargeToOtherBanks = RTGSChargeToOtherBanks;
             this.RTGSChargeToOtherBanks = IMPSChargeToOtherBanks;
-            // currency and exchange rate
+            this.Id = SetId(name);
+            this.Currency = currency;
             this.ExchangeRate = exchangeRate;
         }
 
-        private string setId(string name)
+        private static string SetId(string name)
         {
-            currentDate = DateTime.Now;
+            DateTime currentDate = DateTime.Now;
             string date = currentDate.ToShortDateString();
             string Id = "";
             for (int i = 0; i < 3; i++) Id += name[i];

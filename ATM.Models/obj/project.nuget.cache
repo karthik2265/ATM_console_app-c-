@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Cjpvgn8j3WiVl+sfm+0L8scZ6tHzbg6adxKTrHATcINlPAeweLCwJlB5Wg891tPv9IK6Vn1Veu5wbj2GPHtrIw==",
+  "dgSpecHash": "xyhr2RX18hng4/8/Bexv5M4kkS9w3lpIHnoSjeoYQLxoa2cQUo32YcW2haLllt5QXRzEAqvI5VE0KOsSAriVeA==",
   "success": true,
-  "projectFilePath": "C:\\Technovert\\ATM_csharp\\ATM.Models\\ATM.Models.csproj",
+  "projectFilePath": "C:\\Technovert\\atm_csharp\\ATM.Models\\ATM.Models.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

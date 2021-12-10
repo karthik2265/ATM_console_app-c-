@@ -1,9 +1,6 @@
-﻿using System;
+﻿using ATM.Models;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ATM.Models;
 
 namespace ATM.Services
 {
@@ -116,10 +113,10 @@ namespace ATM.Services
             Console.WriteLine("Please enter a valid number");
         }
 
-        public static void UserDoesntExist() 
+        public static void UserDoesntExist()
         {
-             Console.WriteLine();
-             Console.WriteLine("Sorry not able to find a user with given details");
+            Console.WriteLine();
+            Console.WriteLine("Sorry not able to find a user with given details");
         }
 
         public static void UpdateAccountStatusOptions()
@@ -151,7 +148,7 @@ namespace ATM.Services
             Console.WriteLine();
         }
 
-        
+
 
 
     }

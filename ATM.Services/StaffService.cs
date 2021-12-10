@@ -12,38 +12,38 @@ namespace ATM.Services
     {
         public Staff Staff;
 
-        public StaffService(string id, string name, StaffAcessLevel acessLevel = StaffAcessLevel.StaffMember) : base(id, name)
-        {
-           Staff = new Staff(id, name, acessLevel);
-        }
+        public StaffService(string id, string name) : base(id, name)
+    {
+        Staff = new Staff(name, "123", id);
+    }
 
-        //public bool FindAccount(string accId)
-        //{
-        //    foreach (var x in AlphaBank.Customers)
-        //    {
-        //        Customer c = x.Value;
-        //        if (c.Id == accId) return true;
-        //    }
-        //    return false;
-        //}
+    //public bool FindAccount(string accId)
+    //{
+    //    foreach (var x in AlphaBank.Customers)
+    //    {
+    //        Customer c = x.Value;
+    //        if (c.Id == accId) return true;
+    //    }
+    //    return false;
+    //}
 
-        //public bool UpdateAccountStatus(string accId, AccountStatus status)
-        //{
-        //    Customer c = null;
-        //    foreach (var x in AlphaBank.Customers)
-        //    {
-        //        c = x.Value;
-        //        if (c.Id == accId) break;
-        //    }
-        //    if (c != null)
-        //    {
-        //        c.accountStatus = status;
-        //        return true;
-        //    }
-        //    return false;
-        //}
+    //public bool UpdateAccountStatus(string accId, AccountStatus status)
+    //{
+    //    Customer c = null;
+    //    foreach (var x in AlphaBank.Customers)
+    //    {
+    //        c = x.Value;
+    //        if (c.Id == accId) break;
+    //    }
+    //    if (c != null)
+    //    {
+    //        c.accountStatus = status;
+    //        return true;
+    //    }
+    //    return false;
+    //}
 
-        public bool UpdateServiceCharges(BankServiceCharges toBeUpdated, double newCharge)
+    public bool UpdateServiceCharges(BankServiceCharges toBeUpdated, double newCharge)
         {
             if (toBeUpdated == BankServiceCharges.RTGSChargeForSameBank)
             {
@@ -84,7 +84,7 @@ namespace ATM.Services
         public bool UpdateCurrencyAndExchangerate(string currency, double exchangerate)
         {
             Currency newCurrency = (Currency) Enum.Parse(typeof(Currency), currency, true);
-            AlphaBank.AcceptedCurrency = newCurrency;
+            AlphaBank.Currency = newCurrency;
             AlphaBank.ExchangeRate = exchangerate;
             return true;
         } 

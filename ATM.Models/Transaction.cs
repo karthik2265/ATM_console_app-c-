@@ -10,20 +10,23 @@ namespace ATM.Models
     {
         public string SenderAccountId;
         public string RecieverAccountId;
-        public string BankId;
+        public string SenderBankId;
+        public string RecieverBankId;
         public string Id;
         public double Amount;
-        public DateTime On;
+        public DateTime Date;
         public TransactionType Type;
 
-        public Transaction(string SenderAccountId, string RecieverAccountId, double Amount, DateTime On, TransactionType Type) 
+        public Transaction(string SenderAccountId, string RecieverAccountId, string SenderBankId, string RecieverBankId, double Amount, DateTime On, TransactionType Type) 
         {
             this.SenderAccountId = SenderAccountId;
             this.RecieverAccountId = RecieverAccountId;
+            this.SenderBankId = SenderBankId;
+            this.RecieverBankId = RecieverBankId;
             this.Amount = Amount;
-            this.On = On;
+            this.Date = On;
             this.Type = Type;
-            this.Id = getTransactionId(SenderAccountId, BankId, On);
+            this.Id = getTransactionId(SenderAccountId, SenderBankId, On);
         }
 
         private string getTransactionId(string SenderAccountId, string BankId, DateTime On)

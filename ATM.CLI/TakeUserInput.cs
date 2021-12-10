@@ -1,9 +1,5 @@
-﻿using ATM.Services;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ATM.CLI
 {
@@ -22,7 +18,7 @@ namespace ATM.CLI
         public static string AccountId()
         {
             return GetInput("Please enter the account Id");
-        } 
+        }
 
         public static string BankId()
         {

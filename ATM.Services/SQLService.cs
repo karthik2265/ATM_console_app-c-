@@ -87,7 +87,7 @@ namespace ATM.Services
                 var bankData = (IDataReader) reader;
                 var currencyString = Convert.ToString(bankData[6]);
                 Currency currency = (Currency)Enum.Parse(typeof(Currency), currencyString);
-                Bank b = new Bank(Convert.ToString(bankData[0]), Convert.ToString(bankData[1]), Convert.ToDouble(bankData[2]), Convert.ToDouble(bankData[3]), Convert.ToDouble(bankData[4]), Convert.ToDouble(bankData[5]), currency, Convert.ToDouble(bankData[7]));
+                Bank b = new(Convert.ToString(bankData[0]));
                 res.Add(b);
             }
 
@@ -103,7 +103,7 @@ namespace ATM.Services
             string bankId = Convert.ToString(transaction.BankId);
             string amount = Convert.ToString(transaction.Amount);
             string transactionType = Convert.ToString(transaction.Type);
-            string date = transaction.On.ToString("yyyy-MM-dd HH:mm:ss.fff"); ;
+            string date = transaction.Date.ToString("yyyy-MM-dd HH:mm:ss.fff"); ;
 
             string query = $"INSERT INTO Transactions VALUES('{id}', '{senderAccId}', '{recieverAccId}', '{bankId}', {amount}, '{transactionType}', '{date}')";
             SqlCommand command = new(query, connection);
